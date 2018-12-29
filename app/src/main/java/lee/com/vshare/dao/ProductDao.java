@@ -23,7 +23,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import lee.com.vshare.entity.ProductEntity;
+import lee.com.vshare.db.entity.ProductEntity;
 
 @Dao
 public interface ProductDao {

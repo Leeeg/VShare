@@ -35,9 +35,9 @@ import lee.com.vshare.AppExecutors;
 import lee.com.vshare.dao.CommentDao;
 import lee.com.vshare.dao.ProductDao;
 import lee.com.vshare.db.converter.DateConverter;
-import lee.com.vshare.entity.CommentEntity;
-import lee.com.vshare.entity.ProductEntity;
-import lee.com.vshare.entity.ProductFtsEntity;
+import lee.com.vshare.db.entity.CommentEntity;
+import lee.com.vshare.db.entity.ProductEntity;
+import lee.com.vshare.db.entity.ProductFtsEntity;
 
 @Database(entities = {ProductEntity.class, ProductFtsEntity.class, CommentEntity.class}, version = 2)
 @TypeConverters(DateConverter.class)

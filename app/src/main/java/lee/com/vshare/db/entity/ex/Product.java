@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package lee.com.vshare.model;
+package lee.com.vshare.db.entity.ex;
 
 public interface Product {
     int getId();

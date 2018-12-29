@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package lee.com.vshare.entity;
+package lee.com.vshare.db.entity;
 
 
 
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import lee.com.vshare.model.Product;
+import lee.com.vshare.db.entity.ex.Product;
 
 @Entity(tableName = "products")
 public class ProductEntity implements Product {

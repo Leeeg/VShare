@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package lee.com.vshare.entity;
+package lee.com.vshare.db.entity;
 
 import java.util.Date;
 
@@ -23,7 +23,7 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
-import lee.com.vshare.model.Comment;
+import lee.com.vshare.db.entity.ex.Comment;
 
 @Entity(tableName = "comments",
         foreignKeys = {

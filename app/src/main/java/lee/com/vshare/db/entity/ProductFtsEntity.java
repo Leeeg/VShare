@@ -1,5 +1,5 @@
 /*
- * Copyright 2017, The Android Open Source Project
+ * Copyright 2018, The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,27 @@
  * limitations under the License.
  */
 
-package lee.com.vshare.model;
+package lee.com.vshare.db.entity;
 
-import java.util.Date;
+import androidx.room.Entity;
+import androidx.room.Fts4;
 
-public interface Comment {
-    int getId();
-    int getProductId();
-    String getText();
-    Date getPostedAt();
+@Entity(tableName = "productsFts")
+@Fts4(contentEntity = ProductEntity.class)
+public class ProductFtsEntity {
+  private String name;
+  private String description;
+
+  public ProductFtsEntity(String name, String description) {
+    this.name = name;
+    this.description = description;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getDescription() {
+    return description;
+  }
 }

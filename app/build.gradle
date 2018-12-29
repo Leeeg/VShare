@@ -50,17 +50,19 @@ dependencies {
     // Support libraries
     implementation deps.support.app_compat
     implementation deps.support.v4
+//    implementation deps.support.v7
     implementation deps.support.design
     implementation deps.support.cardview
 
     // Architecture components
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.extensions
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     annotationProcessor deps.lifecycle.compiler
     implementation deps.room.runtime
     annotationProcessor deps.room.compiler
+
+    //
+    implementation deps.constraint_layout
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation deps.atsl.runner

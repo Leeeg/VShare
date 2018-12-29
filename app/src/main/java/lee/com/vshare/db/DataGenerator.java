@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import lee.com.vshare.entity.CommentEntity;
-import lee.com.vshare.entity.ProductEntity;
-import lee.com.vshare.model.Product;
+import lee.com.vshare.db.entity.CommentEntity;
+import lee.com.vshare.db.entity.ProductEntity;
+import lee.com.vshare.db.entity.ex.Product;
 
 /**
  * Generates data to pre-populate the database

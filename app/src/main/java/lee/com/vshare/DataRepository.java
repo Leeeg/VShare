@@ -5,8 +5,8 @@ import java.util.List;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import lee.com.vshare.db.AppDatabase;
-import lee.com.vshare.entity.CommentEntity;
-import lee.com.vshare.entity.ProductEntity;
+import lee.com.vshare.db.entity.CommentEntity;
+import lee.com.vshare.db.entity.ProductEntity;
 
 /**
  * Repository handling the work with products and comments.
