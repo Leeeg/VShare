@@ -50,7 +50,6 @@ dependencies {
     // Support libraries
     implementation deps.support.app_compat
     implementation deps.support.v4
-//    implementation deps.support.v7
     implementation deps.support.design
     implementation deps.support.cardview
 
@@ -61,8 +60,10 @@ dependencies {
     implementation deps.room.runtime
     annotationProcessor deps.room.compiler
 
-    //
+    //custom
     implementation deps.constraint_layout
+    implementation deps.glide.runtime
+    annotationProcessor deps.glide.compiler
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation deps.atsl.runner

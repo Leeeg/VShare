@@ -9,18 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import lee.com.vshare.R;
-import lee.com.vshare.ui.BaseFragment;
-
 import lee.com.vshare.databinding.FragmentHotBinding;
+import lee.com.vshare.ui.BaseFragment;
 
 /**
  * CreateDate：18-12-29 on 下午2:59
  * Describe:
  * Coder: lee
  */
-public class HotFragment extends BaseFragment {
+public class BlogsFragment extends BaseFragment {
 
-    public static final String TAG = "MainFragmentViewModel";
+    public static final String TAG = "BlogsFragment";
 
     private FragmentHotBinding hotBinding;
 
