@@ -23,7 +23,7 @@
 
     <!-- Strings related to bottomNavigationView -->
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Das</string>
-    <string name="title_notifications">Not</string>
-    <string name="title_message">Msg</string>
+    <string name="title_blogs">Blogs</string>
+    <string name="title_recreation">Recreation</string>
+    <string name="title_message">Message</string>
 </resources>

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import lee.com.vshare.R;
-import lee.com.vshare.databinding.FragmentHotBinding;
+import lee.com.vshare.databinding.FragmentRecreationBinding;
 import lee.com.vshare.ui.BaseFragment;
 
 /**
@@ -21,17 +21,15 @@ public class RecreationalFragment extends BaseFragment {
 
     public static final String TAG = "RecreationalFragment";
 
-    private FragmentHotBinding hotBinding;
+    private FragmentRecreationBinding recreationBinding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        hotBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_hot, container, false);
+        recreationBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_recreation, container, false);
 
-        hotBinding.setIsLoading(true);
-
-        return hotBinding.getRoot();
+        return recreationBinding.getRoot();
     }
 
     @Override
@@ -40,5 +38,10 @@ public class RecreationalFragment extends BaseFragment {
 
     }
 
-
+    public static RecreationalFragment newInstance() {
+        final RecreationalFragment fragment = new RecreationalFragment();
+        final Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 }

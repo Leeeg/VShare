@@ -5,7 +5,8 @@ package lee.com.vshare.model.ex;
  * Describe:
  * Coder: lee
  */
-public interface Hot {
+public interface Home {
 
     String getTitle();
+
 }

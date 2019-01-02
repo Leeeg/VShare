@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import lee.com.vshare.R;
-import lee.com.vshare.databinding.FragmentHotBinding;
+import lee.com.vshare.databinding.FragmentBlogsBinding;
 import lee.com.vshare.ui.BaseFragment;
 
 /**
@@ -21,23 +21,31 @@ public class BlogsFragment extends BaseFragment {
 
     public static final String TAG = "BlogsFragment";
 
-    private FragmentHotBinding hotBinding;
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    private FragmentBlogsBinding blogsBinding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        hotBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_hot, container, false);
+        blogsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_blogs, container, false);
 
-        hotBinding.setIsLoading(true);
-
-        return hotBinding.getRoot();
+        return blogsBinding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+    }
+
+    public static BlogsFragment newInstance() {
+        final BlogsFragment fragment = new BlogsFragment();
+        final Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
     }
 
 

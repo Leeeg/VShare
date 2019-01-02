@@ -11,7 +11,8 @@ import androidx.databinding.DataBindingUtil;
 import lee.com.vshare.R;
 import lee.com.vshare.ui.BaseFragment;
 
-import lee.com.vshare.databinding.FragmentHotBinding;
+import lee.com.vshare.databinding.FragmentHomeBinding;
+
 
 /**
  * CreateDate：18-12-29 on 下午2:59
@@ -22,17 +23,17 @@ public class HomeFragment extends BaseFragment {
 
     public static final String TAG = "HomeFragment";
 
-    private FragmentHotBinding hotBinding;
+    private  FragmentHomeBinding homeBinding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        hotBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_hot, container, false);
+        homeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
 
-        hotBinding.setIsLoading(true);
+        homeBinding.setIsLoading(true);
 
-        return hotBinding.getRoot();
+        return homeBinding.getRoot();
     }
 
     @Override
@@ -41,5 +42,11 @@ public class HomeFragment extends BaseFragment {
 
     }
 
+    public static HomeFragment newInstance() {
+        final HomeFragment fragment = new HomeFragment();
+        final Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 }

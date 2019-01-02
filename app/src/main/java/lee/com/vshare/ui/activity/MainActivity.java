@@ -1,12 +1,15 @@
 package lee.com.vshare.ui.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,24 +17,46 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
 import lee.com.vshare.R;
 import lee.com.vshare.ui.BaseActivity;
+import lee.com.vshare.ui.BaseFragment;
+import lee.com.vshare.ui.fragment.BlogsFragment;
 import lee.com.vshare.ui.fragment.HomeFragment;
+import lee.com.vshare.ui.fragment.MessageFragment;
+import lee.com.vshare.ui.fragment.RecreationalFragment;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    DrawerLayout drawer;
+    private FragmentManager fragmentManager;
+
+    private int tabIndex;
+    private final static int TAB_INDEX_HOME = 0;
+    private final static int TAB_INDEX_BLOGS = 1;
+    private final static int TAB_INDEX_RECREATION = 2;
+    private final static int TAB_INDEX_MESSAGE = 3;
+    private Map<Integer, BaseFragment> tabMap = new HashMap<>(4);
+
+    private DrawerLayout drawer;
+    private BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
-
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
+        init();
+
+        fragmentManager = getSupportFragmentManager();
+
+        loadFragment(savedInstanceState);
+
+    }
+
+    private void init() {
 
         drawer = findViewById(R.id.drawer_layout);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -73,27 +98,51 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mOnNavigationItemSelectedListener = (item) -> {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    Snackbar.make(contentView, "Replace with your own action", Snackbar.LENGTH_SHORT)
-                            .setAction("Action", null).show();
+                    if (TAB_INDEX_HOME != tabIndex) {
+                        showFragment(TAB_INDEX_HOME);
+                    }
                     return true;
-                case R.id.navigation_dashboard:
-
+                case R.id.navigation_blogs:
+                    if (TAB_INDEX_BLOGS != tabIndex) {
+                        BlogsFragment blogsFragment = (BlogsFragment) fragmentManager.findFragmentByTag(BlogsFragment.TAG);
+                        if (null == blogsFragment) {
+                            blogsFragment = BlogsFragment.newInstance();
+                            addFragment(blogsFragment, TAB_INDEX_BLOGS, BlogsFragment.TAG);
+                        } else {
+                            showFragment(TAB_INDEX_BLOGS);
+                        }
+                    }
                     return true;
                 case R.id.navigation_notifications:
-
+                    if (TAB_INDEX_RECREATION != tabIndex) {
+                        RecreationalFragment recreationalFragment = (RecreationalFragment) fragmentManager.findFragmentByTag(RecreationalFragment.TAG);
+                        if (null == recreationalFragment) {
+                            recreationalFragment = RecreationalFragment.newInstance();
+                            addFragment(recreationalFragment, TAB_INDEX_RECREATION, RecreationalFragment.TAG);
+                        }else {
+                            showFragment(TAB_INDEX_RECREATION);
+                        }
+                    }
                     return true;
                 case R.id.navigation_message:
-
+                    if (TAB_INDEX_MESSAGE != tabIndex) {
+                        MessageFragment messageFragment = (MessageFragment) fragmentManager.findFragmentByTag(MessageFragment.TAG);
+                        if (null == messageFragment) {
+                            messageFragment = MessageFragment.newInstance();
+                            addFragment(messageFragment, TAB_INDEX_MESSAGE, MessageFragment.TAG);
+                        }else {
+                            showFragment(TAB_INDEX_MESSAGE);
+                        }
+                    }
                     return true;
             }
             return false;
 
         };
 
-        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation = findViewById(R.id.navigation);
+        navigation.setEnabled(false);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        loadFragment(savedInstanceState);
 
     }
 
@@ -137,21 +186,45 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
      */
     private void loadFragment(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            HomeFragment fragment = new HomeFragment();
-            getSupportFragmentManager()
+            HomeFragment fragment = HomeFragment.newInstance();
+            fragmentManager
                     .beginTransaction()
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .add(R.id.fragment_container, fragment, HomeFragment.TAG)
                     .commit();
+
+            tabIndex = TAB_INDEX_HOME;
+            navigation.setEnabled(true);
+
+            tabMap.put(tabIndex, fragment);
         }
     }
 
-    /**
-     * 切换Fragment
-     * @param view
-     */
-    public void show(View view) {
+    public void addFragment(BaseFragment fragment, int currentIndex, String tag) {
+        Log.d("Lee_MainActivity", "addFragment");
+        navigation.setEnabled(false);
+        fragmentManager
+                .beginTransaction()
+                .hide(tabMap.get(tabIndex))
+                .add(R.id.fragment_container, fragment, tag)
+                .commit();
 
+        tabIndex = currentIndex;
+        navigation.setEnabled(true);
+
+        tabMap.put(tabIndex, fragment);
+    }
+
+    public void showFragment(int currentIndex) {
+        Log.d("Lee_MainActivity", "showFragment");
+        navigation.setEnabled(false);
+        fragmentManager
+                .beginTransaction()
+                .hide(tabMap.get(tabIndex))
+                .show(tabMap.get(currentIndex))
+                .commit();
+
+        tabIndex = currentIndex;
+        navigation.setEnabled(true);
     }
 
 }

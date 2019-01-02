@@ -1,13 +1,13 @@
 package lee.com.vshare.model;
 
-import lee.com.vshare.model.ex.Hot;
+import lee.com.vshare.model.ex.Home;
 
 /**
  * CreateDate：18-12-29 on 下午5:17
  * Describe:
  * Coder: lee
  */
-public class HotModel implements Hot {
+public class HomeModel implements Home {
 
     private String title;
 

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import lee.com.vshare.R;
-import lee.com.vshare.databinding.FragmentHotBinding;
+import lee.com.vshare.databinding.FragmentMessageBinding;
 import lee.com.vshare.ui.BaseFragment;
 
 /**
@@ -21,17 +21,15 @@ public class MessageFragment extends BaseFragment {
 
     public static final String TAG = "MessageFragment";
 
-    private FragmentHotBinding hotBinding;
+    private FragmentMessageBinding messageBinding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        hotBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_hot, container, false);
+        messageBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_message, container, false);
 
-        hotBinding.setIsLoading(true);
-
-        return hotBinding.getRoot();
+        return messageBinding.getRoot();
     }
 
     @Override
@@ -40,5 +38,10 @@ public class MessageFragment extends BaseFragment {
 
     }
 
-
+    public static MessageFragment newInstance() {
+        final MessageFragment fragment = new MessageFragment();
+        final Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 }

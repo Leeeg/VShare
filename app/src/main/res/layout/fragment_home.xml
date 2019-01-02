@@ -12,7 +12,7 @@
 
         <variable
             name="Hot"
-            type="lee.com.vshare.model.ex.Hot" />
+            type="lee.com.vshare.model.ex.Home" />
     </data>
 
     <LinearLayout
