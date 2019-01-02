@@ -26,4 +26,7 @@
     <string name="title_blogs">Blogs</string>
     <string name="title_recreation">Recreation</string>
     <string name="title_message">Message</string>
+
+    <!-- Strings related to homeFragment -->
+    <string name="home_fragment_notes">List of Notes in homeFragment</string>
 </resources>
