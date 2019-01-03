@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="lee.com.vshare.util.StringUtils" />
+
+        <variable
+            name="blogs"
+            type="lee.com.vshare.model.ex.Blogs" />
+
+        <variable
+            name="listener"
+            type="lee.com.vshare.listener.BlogsItemClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:onClick="@{()->listener.onClick(blogs)}">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{blogs.blogTitle}"
+            android:textColor="@color/blackTitle"
+            android:textSize="@dimen/item_blog_title"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/imageView0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{blogs.describe}"
+            android:textSize="@dimen/item_blog_describe"
+            app:layout_constraintEnd_toStartOf="@id/imageView0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.66" />
+
+        <ImageView
+            android:id="@+id/imageView0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="h,15:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/icon" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="h,15:9"
+            app:layout_constraintEnd_toStartOf="@id/imageView2"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:srcCompat="@mipmap/icon" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="h,15:9"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/imageView1"
+            app:layout_constraintTop_toBottomOf="@id/textView2"
+            app:srcCompat="@mipmap/icon" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="h,15:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/imageView2"
+            app:layout_constraintTop_toBottomOf="@id/textView2"
+            app:srcCompat="@mipmap/icon" />
+
+        <!--action of blog-->
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView1"
+            app:srcCompat="@mipmap/ic_blog_browse_16" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:gravity="center"
+            android:text="@{``+blogs.blogReads}"
+            android:textSize="@dimen/item_blog_action"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="@id/imageView4" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginLeft="6dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@id/textView4"
+            app:srcCompat="@mipmap/ic_blog_tap_16" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:gravity="center"
+            android:text="@{``+blogs.blogLikes}"
+            android:textSize="@dimen/item_blog_action"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toTopOf="@id/imageView4" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginLeft="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:srcCompat="@mipmap/ic_blog_share_16" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:gravity="center"
+            android:text="@{``+blogs.share}"
+            android:textSize="@dimen/item_blog_action"
+            app:layout_constraintBottom_toBottomOf="@id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="@id/imageView4" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:srcCompat="@mipmap/ic_blog_author_16" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:gravity="center"
+            android:text="@{blogs.blogAuthorName}"
+            android:textSize="@dimen/item_blog_action"
+            app:layout_constraintBottom_toBottomOf="@id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/imageView7"
+            app:layout_constraintTop_toTopOf="@id/imageView4" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/imageView4"
+            app:layout_constraintEnd_toStartOf="@id/textView8"
+            app:srcCompat="@mipmap/ic_blog_author_16" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:gravity="center"
+            android:text="@{StringUtils.dataToString(blogs.blogModifiedTime)}"
+            android:textSize="@dimen/item_blog_action"
+            app:layout_constraintBottom_toBottomOf="@id/imageView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageView4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
