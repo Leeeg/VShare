@@ -83,8 +83,7 @@ public class BlogsAdapter extends RecyclerView.Adapter<BlogsAdapter.BlogsViewHol
 
     @Override
     public BlogsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ItemBlogsBinding binding= DataBindingUtil
-                .inflate(LayoutInflater.from(parent.getContext()), R.layout.item_blogs, parent, false);
+        ItemBlogsBinding binding= DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_blogs, parent, false);
         binding.setListener(blogsItemClickListener);
         return new BlogsViewHolder(binding);
     }
@@ -102,7 +101,7 @@ public class BlogsAdapter extends RecyclerView.Adapter<BlogsAdapter.BlogsViewHol
 
     @Override
     public long getItemId(int position) {
-        return mBlogsList.get(position).getBlogId();
+        return position;
     }
 
     static class BlogsViewHolder extends RecyclerView.ViewHolder {
