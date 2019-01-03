@@ -18,4 +18,11 @@ public class StringUtils {
         }
     }
 
+    public static boolean isStringValid(String s){
+        if (null == s || s.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
 }

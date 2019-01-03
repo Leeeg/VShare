@@ -193,7 +193,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
             android:gravity="center"
-            android:text="@{blogs.blogAuthorName}"
+            android:text="@{blogs.blogAuthorName ?? `unknown`}"
             android:textSize="@dimen/item_blog_action"
             app:layout_constraintBottom_toBottomOf="@id/imageView4"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
@@ -207,7 +207,7 @@
             android:layout_marginLeft="8dp"
             app:layout_constraintBottom_toBottomOf="@id/imageView4"
             app:layout_constraintEnd_toStartOf="@id/textView8"
-            app:srcCompat="@mipmap/ic_blog_author_16" />
+            app:srcCompat="@mipmap/ic_blog_time_16" />
 
         <TextView
             android:id="@+id/textView8"

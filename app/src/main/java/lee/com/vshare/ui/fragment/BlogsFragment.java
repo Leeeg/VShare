@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.room.util.StringUtil;
 import lee.com.vshare.R;
 import lee.com.vshare.databinding.FragmentBlogsBinding;
 import lee.com.vshare.listener.BlogsItemClickListener;
