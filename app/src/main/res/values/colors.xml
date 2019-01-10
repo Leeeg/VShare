@@ -11,4 +11,9 @@
     <color name="primaryTitle">#008577</color>
 
     <color name="lineGray">#757575</color>
+    <color name="editGray">#D1CFCF</color>
+    <color name="textBlack">#2B2B2B</color>
+    <color name="textGray">#A0A0A0</color>
+    <color name="textGreen">#008577</color>
+    <color name="textRed">#FF0000</color>
 </resources>

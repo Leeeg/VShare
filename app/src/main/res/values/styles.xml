@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -24,5 +24,25 @@
         <!--标题和导航键的颜色-->
         <item name="android:textColorPrimary">@color/primaryTitle</item>
     </style>>
+
+    <!--TextInputLayout-->
+    <!-- 设置提示文字样式 -->
+    <style name="hintAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/textBlack</item>
+    </style>
+    <!-- 设置超出长度提示文字样式 -->
+    <style name="overAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/textRed</item>
+    </style>
+    <!-- 设置错误提示文字样式 -->
+    <style name="errorAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/textRed</item>
+    </style>
+    <!--Edit-->
+    <style name="EditStyle" parent="TextAppearance.AppCompat">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/textBlack</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
 
 </resources>
