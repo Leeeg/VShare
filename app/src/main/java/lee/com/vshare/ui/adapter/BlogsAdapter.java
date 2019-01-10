@@ -17,6 +17,7 @@
 package lee.com.vshare.ui.adapter;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -40,11 +41,13 @@ public class BlogsAdapter extends RecyclerView.Adapter<BlogsAdapter.BlogsViewHol
     private final BlogsItemClickListener blogsItemClickListener;
 
     public BlogsAdapter(@Nullable BlogsItemClickListener itemClickListener) {
+        Log.d("Lee_BlogsAdapter", "BlogsAdapter");
         blogsItemClickListener = itemClickListener;
         setHasStableIds(true);
     }
 
     public void setProductList(final List<? extends Blogs> blogsList) {
+        Log.d("Lee_BlogsAdapter", "setProductList");
         if (mBlogsList == null) {
             mBlogsList = blogsList;
             notifyItemRangeInserted(0, blogsList.size());
@@ -83,6 +86,7 @@ public class BlogsAdapter extends RecyclerView.Adapter<BlogsAdapter.BlogsViewHol
 
     @Override
     public BlogsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d("Lee_BlogsAdapter", "onCreateViewHolder");
         ItemBlogsBinding binding= DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_blogs, parent, false);
         binding.setListener(blogsItemClickListener);
         return new BlogsViewHolder(binding);
@@ -90,18 +94,21 @@ public class BlogsAdapter extends RecyclerView.Adapter<BlogsAdapter.BlogsViewHol
 
     @Override
     public void onBindViewHolder(BlogsViewHolder holder, int position) {
+        Log.d("Lee_BlogsAdapter", "onBindViewHolder");
         holder.binding.setBlogs(mBlogsList.get(position));
         holder.binding.executePendingBindings();
     }
 
     @Override
     public int getItemCount() {
+        Log.d("Lee_BlogsAdapter", "getItemCount");
         return mBlogsList == null ? 0 : mBlogsList.size();
     }
 
     @Override
     public long getItemId(int position) {
-        return position;
+        Log.d("Lee_BlogsAdapter", "getItemId position = " + position);
+        return mBlogsList.get(position).getBlogId();
     }
 
     static class BlogsViewHolder extends RecyclerView.ViewHolder {
@@ -110,6 +117,7 @@ public class BlogsAdapter extends RecyclerView.Adapter<BlogsAdapter.BlogsViewHol
 
         public BlogsViewHolder(ItemBlogsBinding binding) {
             super(binding.getRoot());
+            Log.d("Lee_BlogsAdapter", "BlogsViewHolder");
             this.binding = binding;
         }
     }

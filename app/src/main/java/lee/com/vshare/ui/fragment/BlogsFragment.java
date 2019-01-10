@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.room.util.StringUtil;
 import lee.com.vshare.R;
 import lee.com.vshare.databinding.FragmentBlogsBinding;
 import lee.com.vshare.listener.BlogsItemClickListener;
@@ -57,6 +56,7 @@ public class BlogsFragment extends BaseFragment{
         // Update the list when the data changes
         liveData.observe(this, (myProducts) -> {
             if (myProducts != null) {
+                Log.d("Lee_Blog", "setProductList");
                 mAdapter.setProductList(myProducts);
             }
             // espresso does not know how to wait for data binding's loop so we execute changes
