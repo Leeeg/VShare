@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:id="@+id/layout_activity_main_content"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   tools:context=".ui.activity.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_activity_main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -17,37 +17,37 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/tool_bar_height"
-            app:title="@string/app_name"
             android:background="@android:color/white"
+            android:theme="@style/AppTheme.AppBarOverlay"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            android:theme="@style/AppTheme.AppBarOverlay"/>
+            app:title="@string/app_name" />
 
         <!--<LinearLayout-->
-            <!--android:id="@+id/toolbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="@dimen/tool_bar_height"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:background="@android:color/white"-->
-            <!--android:orientation="horizontal"-->
-            <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
-            <!--app:titleTextColor="@color/colorPrimaryDark">-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/tool_bar_height"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:background="@android:color/white"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+        <!--app:titleTextColor="@color/colorPrimaryDark">-->
 
-            <!--<ImageView-->
-                <!--android:onClick="showDra"-->
-                <!--android:scaleType="fitCenter"-->
-                <!--android:id="@+id/toolbar_icon_img"-->
-                <!--android:layout_width="@dimen/dp_40"-->
-                <!--android:layout_height="@dimen/dp_40"-->
-                <!--android:layout_marginLeft="@dimen/dp_10"/>-->
+        <!--<ImageView-->
+        <!--android:onClick="showDra"-->
+        <!--android:scaleType="fitCenter"-->
+        <!--android:id="@+id/toolbar_icon_img"-->
+        <!--android:layout_width="@dimen/dp_40"-->
+        <!--android:layout_height="@dimen/dp_40"-->
+        <!--android:layout_marginLeft="@dimen/dp_10"/>-->
 
-            <!--<TextView-->
-                <!--android:textStyle="bold"-->
-                <!--android:layout_marginLeft="@dimen/dp_10"-->
-                <!--android:textSize="@dimen/title_txt_main"-->
-                <!--android:textColor="@color/primaryTitle"-->
-                <!--android:text="@string/app_name"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"/>-->
+        <!--<TextView-->
+        <!--android:textStyle="bold"-->
+        <!--android:layout_marginLeft="@dimen/dp_10"-->
+        <!--android:textSize="@dimen/title_txt_main"-->
+        <!--android:textColor="@color/primaryTitle"-->
+        <!--android:text="@string/app_name"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"/>-->
 
         <!--</LinearLayout>-->
 
@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
-        app:layout_constraintTop_toBottomOf="@+id/app_bar"/>
+        app:layout_constraintTop_toBottomOf="@+id/app_bar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
@@ -67,6 +67,6 @@
         android:background="?android:attr/windowBackground"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/navigation"/>
+        app:menu="@menu/navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

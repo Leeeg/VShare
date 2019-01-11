@@ -28,7 +28,7 @@
     <!--TextInputLayout-->
     <!-- 设置提示文字样式 -->
     <style name="hintAppearance" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/textBlack</item>
+        <item name="android:textColor">@color/textGreen</item>
     </style>
     <!-- 设置超出长度提示文字样式 -->
     <style name="overAppearance" parent="TextAppearance.AppCompat">

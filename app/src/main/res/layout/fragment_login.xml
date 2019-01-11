@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="loginListener"
+            type="lee.com.vshare.listener.LoginListener" />
     </data>
 
     <ScrollView
@@ -27,6 +30,8 @@
                 bind:showImgCircle="@{@drawable/icon}" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_50"
@@ -82,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_36"
+                android:onClick="@{()->loginListener.onLoginButtonClick()}"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 

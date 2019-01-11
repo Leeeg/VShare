@@ -1,5 +1,6 @@
 package lee.com.vshare.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -11,7 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import lee.com.vshare.R;
 import lee.com.vshare.databinding.FragmentLoginBinding;
+import lee.com.vshare.listener.LoginListener;
 import lee.com.vshare.ui.BaseFragment;
+import lee.com.vshare.ui.activity.LoginActivity;
+import lee.com.vshare.ui.activity.MainActivity;
 
 /**
  * CreateDate：19-1-10 on 下午3:15
@@ -41,9 +45,14 @@ public class LoginFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
+        mBinding.setLoginListener(loginListener);
 
         return mBinding.getRoot();
 
     }
+
+    private final LoginListener loginListener = () ->{
+        ((LoginActivity)getActivity()).startActivity(new Intent((LoginActivity)getActivity(), MainActivity.class));
+    };
 
 }
