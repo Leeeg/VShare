@@ -16,11 +16,10 @@
 
 package lee.com.vshare.db.entity.ex;
 
-import java.util.Date;
-
-public interface Comment {
+public interface LoginHistory {
     int getId();
-    int getProductId();
-    String getText();
-    Date getPostedAt();
+    long getUserId();
+    String getUserName();
+    String getPassword();
+    String getUserImgUrl();
 }

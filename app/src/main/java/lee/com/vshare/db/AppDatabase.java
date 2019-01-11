@@ -32,25 +32,22 @@ import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import lee.com.vshare.AppExecutors;
-import lee.com.vshare.dao.CommentDao;
-import lee.com.vshare.dao.ProductDao;
+import lee.com.vshare.dao.LoginHistoryDao;
 import lee.com.vshare.db.converter.DateConverter;
-import lee.com.vshare.db.entity.CommentEntity;
+import lee.com.vshare.db.entity.LoginHistoryEntity;
 import lee.com.vshare.db.entity.ProductEntity;
 import lee.com.vshare.db.entity.ProductFtsEntity;
 
-@Database(entities = {ProductEntity.class, ProductFtsEntity.class, CommentEntity.class}, version = 2)
+@Database(entities = {ProductEntity.class, ProductFtsEntity.class, LoginHistoryEntity.class}, version = 2)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase sInstance;
 
     @VisibleForTesting
-    public static final String DATABASE_NAME = "basic-sample-db";
+    public static final String DATABASE_NAME = "basic-vshare-db";
 
-    public abstract ProductDao productDao();
-
-    public abstract CommentDao commentDao();
+    public abstract LoginHistoryDao loginHistoryDao();
 
     private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 
@@ -71,9 +68,11 @@ public abstract class AppDatabase extends RoomDatabase {
      * creates a new instance of the database.
      * The SQLite database is only created when it's accessed for the first time.
      */
-    private static AppDatabase buildDatabase(final Context appContext,
-            final AppExecutors executors) {
-        return Room.databaseBuilder(appContext, AppDatabase.class, DATABASE_NAME)
+    private static AppDatabase buildDatabase(final Context appContext, final AppExecutors executors) {
+        return Room.databaseBuilder(
+                appContext,
+                AppDatabase.class,
+                DATABASE_NAME)
                 .addCallback(new Callback() {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -83,18 +82,22 @@ public abstract class AppDatabase extends RoomDatabase {
                             addDelay();
                             // Generate the data for pre-population
                             AppDatabase database = AppDatabase.getInstance(appContext, executors);
-                            List<ProductEntity> products = DataGenerator.generateProducts();
-                            List<CommentEntity> comments =
-                                    DataGenerator.generateCommentsForProducts(products);
+                            List<LoginHistoryEntity> loginHistories = DataGenerator.generateLoginHistory();
 
-                            insertData(database, products, comments);
+                            insertData(database, loginHistories);
                             // notify that the database was created and it's ready to be used
                             database.setDatabaseCreated();
                         });
                     }
                 })
-            .addMigrations(MIGRATION_1_2)
-            .build();
+//                .addMigrations(MIGRATION_1_2)
+                .build();
+    }
+
+    private static void insertData(final AppDatabase database, final List<LoginHistoryEntity> loginHistories) {
+        database.runInTransaction(() -> {
+            database.loginHistoryDao().insertAll(loginHistories);
+        });
     }
 
     /**
@@ -106,16 +109,8 @@ public abstract class AppDatabase extends RoomDatabase {
         }
     }
 
-    private void setDatabaseCreated(){
+    private void setDatabaseCreated() {
         mIsDatabaseCreated.postValue(true);
-    }
-
-    private static void insertData(final AppDatabase database, final List<ProductEntity> products,
-            final List<CommentEntity> comments) {
-        database.runInTransaction(() -> {
-            database.productDao().insertAll(products);
-            database.commentDao().insertAll(comments);
-        });
     }
 
     private static void addDelay() {
@@ -133,10 +128,10 @@ public abstract class AppDatabase extends RoomDatabase {
 
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
-            database.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS `productsFts` USING FTS4("
-                + "`name` TEXT, `description` TEXT, content=`products`)");
-            database.execSQL("INSERT INTO productsFts (`rowid`, `name`, `description`) "
-                + "SELECT `id`, `name`, `description` FROM products");
+//            database.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS `productsFts` USING FTS4("
+//                    + "`name` TEXT, `description` TEXT, content=`products`)");
+//            database.execSQL("INSERT INTO productsFts (`rowid`, `name`, `description`) "
+//                    + "SELECT `id`, `name`, `description` FROM products");
 
         }
     };

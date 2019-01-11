@@ -54,10 +54,10 @@ public class BlogsFragment extends BaseFragment{
 
     private void subscribeUi(LiveData<List<Blogs>> liveData) {
         // Update the list when the data changes
-        liveData.observe(this, (myProducts) -> {
-            if (myProducts != null) {
-                Log.d("Lee_Blog", "setProductList");
-                mAdapter.setProductList(myProducts);
+        liveData.observe(this, (blogsList) -> {
+            if (blogsList != null) {
+                Log.d("Lee_Blog", "setLoginHistoryList");
+                mAdapter.setBlogsList(blogsList);
             }
             // espresso does not know how to wait for data binding's loop so we execute changes
             // sync.

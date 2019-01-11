@@ -4,7 +4,6 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="loginListener"
             type="lee.com.vshare.listener.LoginListener" />
@@ -53,6 +52,13 @@
                     android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/loginHistoryRecycle"
+                android:layout_marginTop="@dimen/dp_4"
+                android:contentDescription="@string/login_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

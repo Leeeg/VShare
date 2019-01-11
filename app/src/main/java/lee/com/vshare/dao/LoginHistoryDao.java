@@ -24,16 +24,18 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import lee.com.vshare.db.entity.CommentEntity;
+import lee.com.vshare.db.entity.LoginHistoryEntity;
 
 @Dao
-public interface CommentDao {
-    @Query("SELECT * FROM comments where productId = :productId")
-    LiveData<List<CommentEntity>> loadComments(int productId);
-
-    @Query("SELECT * FROM comments where productId = :productId")
-    List<CommentEntity> loadCommentsSync(int productId);
+public interface LoginHistoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<CommentEntity> comments);
+    Long insertUser(LoginHistoryEntity entity);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<LoginHistoryEntity> entities);
+
+    @Query("SELECT * FROM loginhistory")
+    LiveData<List<LoginHistoryEntity>> loadLoinHistory();
+
 }

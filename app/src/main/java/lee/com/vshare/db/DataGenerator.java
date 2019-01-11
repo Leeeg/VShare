@@ -22,8 +22,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import lee.com.vshare.db.entity.CommentEntity;
+import lee.com.vshare.db.entity.LoginHistoryEntity;
 import lee.com.vshare.db.entity.ProductEntity;
+import lee.com.vshare.db.entity.ex.LoginHistory;
 import lee.com.vshare.db.entity.ex.Product;
 
 /**
@@ -41,39 +42,30 @@ public class DataGenerator {
     private static final String[] COMMENTS = new String[]{
             "Comment 1", "Comment 2", "Comment 3", "Comment 4", "Comment 5", "Comment 6"};
 
-    public static List<ProductEntity> generateProducts() {
-        List<ProductEntity> products = new ArrayList<>(FIRST.length * SECOND.length);
-        Random rnd = new Random();
-        for (int i = 0; i < FIRST.length; i++) {
-            for (int j = 0; j < SECOND.length; j++) {
-                ProductEntity product = new ProductEntity();
-                product.setName(FIRST[i] + " " + SECOND[j]);
-                product.setDescription(product.getName() + " " + DESCRIPTION[j]);
-                product.setPrice(rnd.nextInt(240));
-                product.setId(FIRST.length * i + j + 1);
-                products.add(product);
-            }
+    public static List<LoginHistoryEntity> generateLoginHistory() {
+        List<LoginHistoryEntity> histories = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            LoginHistoryEntity history = new LoginHistoryEntity();
+            history.setUserId(i);
+            history.setUserName("name" + i);
+            history.setPassword("password" + i);
+            history.setUserImgUrl("imgUrl" + i);
+            histories.add(history);
         }
-        return products;
+        return histories;
     }
 
-    public static List<CommentEntity> generateCommentsForProducts(
-            final List<ProductEntity> products) {
-        List<CommentEntity> comments = new ArrayList<>();
-        Random rnd = new Random();
+    public static List<LoginHistoryEntity> generateLoginHistory(final List<LoginHistory> loginHistories) {
+        List<LoginHistoryEntity> histories = new ArrayList<>();
+//        for (LoginHistoryEntity history : histories) {
+//            LoginHistoryEntity comment = new LoginHistoryEntity();
+//            comment.setProductId(product.getId());
+//            comment.setText(COMMENTS[i] + " for " + product.getName());
+//            comment.setPostedAt(new Date(System.currentTimeMillis()
+//                    - TimeUnit.DAYS.toMillis(commentsNumber - i) + TimeUnit.HOURS.toMillis(i)));
+//            histories.add(comment);
+//        }
 
-        for (Product product : products) {
-            int commentsNumber = rnd.nextInt(5) + 1;
-            for (int i = 0; i < commentsNumber; i++) {
-                CommentEntity comment = new CommentEntity();
-                comment.setProductId(product.getId());
-                comment.setText(COMMENTS[i] + " for " + product.getName());
-                comment.setPostedAt(new Date(System.currentTimeMillis()
-                        - TimeUnit.DAYS.toMillis(commentsNumber - i) + TimeUnit.HOURS.toMillis(i)));
-                comments.add(comment);
-            }
-        }
-
-        return comments;
+        return histories;
     }
 }

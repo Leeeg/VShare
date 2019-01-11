@@ -30,7 +30,9 @@
     <!-- Strings related to homeFragment -->
     <string name="home_fragment_notes">List of Notes in homeFragment</string>
 
-
     <!-- Strings related to common -->
     <string name="unknown">unknown</string>
+
+    <!-- Strings related to description -->
+    <string name="login_recycle">Login History</string>
 </resources>

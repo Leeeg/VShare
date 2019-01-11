@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="LoginHistory"
+            type="lee.com.vshare.db.entity.ex.LoginHistory" />
+
+        <variable
+            name="listener"
+            type="lee.com.vshare.listener.LoginHistoryItemClickListener" />
+
+    </data>
+
+    <ImageView
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:onClick="@{()->listener.onClick(LoginHistory)}"
+        bind:showImgCircle="@{@drawable/icon}" />
+
+</layout>

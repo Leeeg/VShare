@@ -46,8 +46,8 @@ public class BlogsAdapter extends RecyclerView.Adapter<BlogsAdapter.BlogsViewHol
         setHasStableIds(true);
     }
 
-    public void setProductList(final List<? extends Blogs> blogsList) {
-        Log.d("Lee_BlogsAdapter", "setProductList");
+    public void setBlogsList(final List<? extends Blogs> blogsList) {
+        Log.d("Lee_BlogsAdapter", "setLoginHistoryList");
         if (mBlogsList == null) {
             mBlogsList = blogsList;
             notifyItemRangeInserted(0, blogsList.size());
