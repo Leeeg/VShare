@@ -90,6 +90,7 @@ public class LoginHistoryAdapter extends RecyclerView.Adapter<LoginHistoryAdapte
 
     @Override
     public void onBindViewHolder(LoginHistoryViewHolder holder, int position) {
+        holder.binding.setLoginHistory(mLoginHistories.get(position));
         holder.binding.executePendingBindings();
     }
 

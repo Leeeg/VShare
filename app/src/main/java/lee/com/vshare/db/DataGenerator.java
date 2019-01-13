@@ -50,6 +50,7 @@ public class DataGenerator {
             history.setUserName("name" + i);
             history.setPassword("password" + i);
             history.setUserImgUrl("imgUrl" + i);
+            history.setLoginDate(new Date());
             histories.add(history);
         }
         return histories;

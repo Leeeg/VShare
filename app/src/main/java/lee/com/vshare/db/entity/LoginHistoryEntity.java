@@ -1,6 +1,8 @@
 
 package lee.com.vshare.db.entity;
 
+import java.util.Date;
+
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -14,17 +16,28 @@ public class LoginHistoryEntity implements LoginHistory {
     private String userName;
     private String password;
     private String userImgUrl;
+    private Date loginDate;
 
     public LoginHistoryEntity() {
     }
 
     @Ignore
-    public LoginHistoryEntity(int id, long userId, String userName, String password, String userImgUrl) {
+    public LoginHistoryEntity(int id, long userId, String userName, String password, String userImgUrl, Date loginDate) {
         this.id = id;
         this.userId = userId;
         this.userName = userName;
         this.password = password;
         this.userImgUrl = userImgUrl;
+        this.loginDate = loginDate;
+    }
+
+    @Override
+    public Date getLoginDate() {
+        return loginDate;
+    }
+
+    public void setLoginDate(Date loginDate) {
+        this.loginDate = loginDate;
     }
 
     @Override

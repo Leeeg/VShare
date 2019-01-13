@@ -9,4 +9,6 @@ public interface LoginListener {
 
     void onLoginButtonClick();
 
+    void onShowHistoryClick();
+
 }

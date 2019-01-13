@@ -54,6 +54,7 @@ public class LoginFragment extends BaseFragment {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
 
         mBinding.setLoginListener(loginListener);
+        mBinding.setHistoryShow(false);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -73,7 +74,6 @@ public class LoginFragment extends BaseFragment {
         subscribeUi(viewModel.getmObservableHistories());
     }
 
-
     private void subscribeUi(LiveData<List<LoginHistoryEntity>> liveData) {
         // Update the list when the data changes
         liveData.observe(this, (loginHistories) -> {
@@ -87,9 +87,17 @@ public class LoginFragment extends BaseFragment {
         });
     }
 
-    private final LoginListener loginListener = () ->{
-        ((LoginActivity)getActivity()).startActivity(new Intent((LoginActivity)getActivity(), MainActivity.class));
-        ((LoginActivity)getActivity()).finish();
+    private final LoginListener loginListener = new LoginListener() {
+        @Override
+        public void onLoginButtonClick() {
+            ((LoginActivity)getActivity()).startActivity(new Intent((LoginActivity)getActivity(), MainActivity.class));
+            ((LoginActivity)getActivity()).finish();
+        }
+
+        @Override
+        public void onShowHistoryClick() {
+            mBinding.setHistoryShow(!mBinding.getHistoryShow());
+        }
     };
 
     private final LoginHistoryItemClickListener loginHistoryItemClickListener = (LoginHistory history)->{
