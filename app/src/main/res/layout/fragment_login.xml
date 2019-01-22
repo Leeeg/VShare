@@ -5,15 +5,19 @@
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
+
+        <variable
+            name="historyShow"
+            type="Boolean" />
 
         <variable
             name="loginListener"
             type="lee.com.vshare.listener.LoginListener" />
 
         <variable
-            name="historyShow"
-            type="Boolean" />
+            name="loginPresenter"
+            type="lee.com.vshare.ui.presenter.LoginPresenter" />
     </data>
 
     <ScrollView
@@ -53,6 +57,11 @@
                     app:hintTextAppearance="@style/hintAppearance">
 
                     <EditText
+                        android:maxLength="40"
+                        android:paddingStart="@dimen/safe_spacing"
+                        android:paddingEnd="@dimen/safe_spacing"
+                        android:onTextChanged="@{loginPresenter::onTextChanged}"
+                        android:onFocusChange="@{loginPresenter::onFocusChange}"
                         android:id="@+id/email"
                         style="@style/EditStyle"
                         android:layout_width="match_parent"
@@ -65,6 +74,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
+                    android:layout_marginEnd="@dimen/safe_spacing"
                     android:layout_width="@dimen/dp_30"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
@@ -74,7 +84,6 @@
             </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:animateLayoutChanges="true"
                 android:id="@+id/loginHistoryRecycle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50"
@@ -95,6 +104,9 @@
                 app:passwordToggleEnabled="true">
 
                 <EditText
+                    android:maxLength="40"
+                    android:paddingStart="@dimen/safe_spacing"
+                    android:paddingEnd="@dimen/safe_spacing"
                     android:id="@+id/password"
                     style="@style/EditStyle"
                     android:layout_width="match_parent"

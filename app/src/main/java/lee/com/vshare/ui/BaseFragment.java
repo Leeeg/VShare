@@ -7,5 +7,5 @@ import androidx.fragment.app.Fragment;
  * Describe:
  * Coder: lee
  */
-public class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
 }

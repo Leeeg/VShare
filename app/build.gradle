@@ -81,4 +81,7 @@ dependencies {
     androidTestImplementation deps.support.v4
     androidTestImplementation deps.support.app_compat
     androidTestImplementation deps.support.design
+
+    // 检查更新并后台下载
+    implementation "com.lee.versioncheck:versioncheck:1.0.5"
 }

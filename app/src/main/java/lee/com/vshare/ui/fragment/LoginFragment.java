@@ -1,6 +1,7 @@
 package lee.com.vshare.ui.fragment;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
@@ -25,6 +27,7 @@ import lee.com.vshare.ui.BaseFragment;
 import lee.com.vshare.ui.activity.LoginActivity;
 import lee.com.vshare.ui.activity.MainActivity;
 import lee.com.vshare.ui.adapter.LoginHistoryAdapter;
+import lee.com.vshare.ui.presenter.LoginPresenter;
 import lee.com.vshare.viewmodel.LoginHistoryViewModel;
 
 /**
@@ -53,7 +56,6 @@ public class LoginFragment extends BaseFragment {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
 
-        mBinding.setLoginListener(loginListener);
         mBinding.setHistoryShow(false);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -62,8 +64,33 @@ public class LoginFragment extends BaseFragment {
         mBinding.loginHistoryRecycle.setLayoutManager(layoutManager);
         mBinding.loginHistoryRecycle.setAdapter(mAdapter);
 
+        mBinding.setLoginListener(loginListener);
+        mBinding.setLoginPresenter(new LoginPresenter() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Log.d("Lee_Login", "onFocusChange : hasFocus = " + hasFocus);
+                if (!hasFocus){
+                    mBinding.setHistoryShow(false);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.d("Lee_Login", "onFocusChange : s = " + s);
+            }
+        });
+
+
         return mBinding.getRoot();
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mBinding.getHistoryShow()) {
+            mBinding.setHistoryShow(false);
+        }
     }
 
     @Override
@@ -90,17 +117,20 @@ public class LoginFragment extends BaseFragment {
     private final LoginListener loginListener = new LoginListener() {
         @Override
         public void onLoginButtonClick() {
-            ((LoginActivity)getActivity()).startActivity(new Intent((LoginActivity)getActivity(), MainActivity.class));
-            ((LoginActivity)getActivity()).finish();
+            ((LoginActivity) getActivity()).startActivity(new Intent((LoginActivity) getActivity(), MainActivity.class));
+            ((LoginActivity) getActivity()).finish();
         }
 
         @Override
         public void onShowHistoryClick() {
             mBinding.setHistoryShow(!mBinding.getHistoryShow());
+            if (mBinding.getHistoryShow()){
+                mBinding.email.requestFocus();
+            }
         }
     };
 
-    private final LoginHistoryItemClickListener loginHistoryItemClickListener = (LoginHistory history)->{
+    private final LoginHistoryItemClickListener loginHistoryItemClickListener = (LoginHistory history) -> {
         Log.d("Lee_Login", "userId = " + history.getUserId());
     };
 
