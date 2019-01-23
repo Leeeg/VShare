@@ -19,7 +19,7 @@ import lee.com.vshare.R;
 import lee.com.vshare.databinding.FragmentLoginBinding;
 import lee.com.vshare.db.entity.LoginHistoryEntity;
 import lee.com.vshare.db.entity.ex.LoginHistory;
-import lee.com.vshare.listener.LoginHistoryItemClickListener;
+import lee.com.vshare.listener.ItemClickListener;
 import lee.com.vshare.ui.BaseFragment;
 import lee.com.vshare.ui.activity.LoginActivity;
 import lee.com.vshare.ui.activity.MainActivity;
@@ -57,7 +57,7 @@ public class LoginFragment extends BaseFragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mAdapter = new LoginHistoryAdapter(loginHistoryItemClickListener);
+        mAdapter = new LoginHistoryAdapter(itemClickListener);
         mBinding.loginHistoryRecycle.setLayoutManager(layoutManager);
         mBinding.loginHistoryRecycle.setAdapter(mAdapter);
 
@@ -130,7 +130,7 @@ public class LoginFragment extends BaseFragment {
         }
     };
 
-    private final LoginHistoryItemClickListener loginHistoryItemClickListener = (LoginHistory history) -> {
+    private final ItemClickListener<LoginHistory> itemClickListener = (history) -> {
         Log.d("Lee_Login", "userId = " + history.getUserId());
     };
 

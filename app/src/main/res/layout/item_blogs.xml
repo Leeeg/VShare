@@ -12,7 +12,7 @@
 
         <variable
             name="listener"
-            type="lee.com.vshare.listener.BlogsItemClickListener" />
+            type="lee.com.vshare.listener.ItemClickListener" />
     </data>
 
     <FrameLayout
@@ -25,7 +25,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{()->listener.onClick(blogs)}">
+            android:onClick="@{()->listener.onItemClick(blogs)}">
 
             <TextView
                 android:id="@+id/textView1"

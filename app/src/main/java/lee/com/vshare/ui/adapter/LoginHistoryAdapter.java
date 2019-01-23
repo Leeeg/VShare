@@ -30,16 +30,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import lee.com.vshare.R;
 import lee.com.vshare.databinding.ItemLoginHistoryBinding;
 import lee.com.vshare.db.entity.ex.LoginHistory;
-import lee.com.vshare.listener.LoginHistoryItemClickListener;
+import lee.com.vshare.listener.ItemClickListener;
 
 public class LoginHistoryAdapter extends RecyclerView.Adapter<LoginHistoryAdapter.LoginHistoryViewHolder> {
 
     List<? extends LoginHistory> mLoginHistories;
 
     @Nullable
-    private final LoginHistoryItemClickListener historyItemClickListener;
+    private final ItemClickListener historyItemClickListener;
 
-    public LoginHistoryAdapter(@Nullable LoginHistoryItemClickListener itemClickListener) {
+    public LoginHistoryAdapter(@Nullable ItemClickListener itemClickListener) {
         historyItemClickListener = itemClickListener;
         setHasStableIds(true);
     }

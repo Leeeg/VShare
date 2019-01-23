@@ -15,7 +15,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 import lee.com.vshare.R;
 import lee.com.vshare.databinding.FragmentBlogsBinding;
-import lee.com.vshare.listener.BlogsItemClickListener;
+import lee.com.vshare.listener.ItemClickListener;
 import lee.com.vshare.model.ex.Blogs;
 import lee.com.vshare.ui.BaseFragment;
 import lee.com.vshare.ui.adapter.BlogsAdapter;
@@ -39,7 +39,7 @@ public class BlogsFragment extends BaseFragment{
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_blogs, container, false);
 
-        mAdapter = new BlogsAdapter(blogsItemClickListener);
+        mAdapter = new BlogsAdapter(itemClickListener);
         mBinding.blogsRecycle.setAdapter(mAdapter);
         return mBinding.getRoot();
     }
@@ -72,7 +72,7 @@ public class BlogsFragment extends BaseFragment{
         return fragment;
     }
 
-    private final BlogsItemClickListener blogsItemClickListener = (Blogs blogs) ->{
+    private final ItemClickListener<Blogs> itemClickListener = (blogs) -> {
         Log.d("Lee_Blog", "id = " + blogs.getBlogId());
     };
 

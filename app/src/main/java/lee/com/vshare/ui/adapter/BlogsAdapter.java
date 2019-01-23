@@ -29,18 +29,18 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import lee.com.vshare.R;
-import lee.com.vshare.listener.BlogsItemClickListener;
-import lee.com.vshare.model.ex.Blogs;
 import lee.com.vshare.databinding.ItemBlogsBinding;
+import lee.com.vshare.listener.ItemClickListener;
+import lee.com.vshare.model.ex.Blogs;
 
 public class BlogsAdapter extends RecyclerView.Adapter<BlogsAdapter.BlogsViewHolder> {
 
     List<? extends Blogs> mBlogsList;
 
     @Nullable
-    private final BlogsItemClickListener blogsItemClickListener;
+    private final ItemClickListener blogsItemClickListener;
 
-    public BlogsAdapter(@Nullable BlogsItemClickListener itemClickListener) {
+    public BlogsAdapter(@Nullable ItemClickListener itemClickListener) {
         Log.d("Lee_BlogsAdapter", "BlogsAdapter");
         blogsItemClickListener = itemClickListener;
         setHasStableIds(true);
