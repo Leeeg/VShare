@@ -12,10 +12,6 @@
             type="Boolean" />
 
         <variable
-            name="loginListener"
-            type="lee.com.vshare.listener.LoginListener" />
-
-        <variable
             name="loginPresenter"
             type="lee.com.vshare.ui.presenter.LoginPresenter" />
     </data>
@@ -57,28 +53,28 @@
                     app:hintTextAppearance="@style/hintAppearance">
 
                     <EditText
-                        android:maxLength="40"
-                        android:paddingStart="@dimen/safe_spacing"
-                        android:paddingEnd="@dimen/safe_spacing"
-                        android:onTextChanged="@{loginPresenter::onTextChanged}"
-                        android:onFocusChange="@{loginPresenter::onFocusChange}"
                         android:id="@+id/email"
                         style="@style/EditStyle"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_30"
                         android:hint="@string/prompt_email"
                         android:inputType="textEmailAddress"
+                        android:maxLength="40"
                         android:maxLines="1"
+                        android:onFocusChange="@{loginPresenter::onFocusChange}"
+                        android:onTextChanged="@{loginPresenter::onTextChanged}"
+                        android:paddingStart="@dimen/safe_spacing"
+                        android:paddingEnd="@dimen/safe_spacing"
                         android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
-                    android:layout_marginEnd="@dimen/safe_spacing"
                     android:layout_width="@dimen/dp_30"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
-                    android:onClick="@{()->loginListener.onShowHistoryClick()}"
+                    android:layout_marginEnd="@dimen/safe_spacing"
+                    android:onClick="@{()->loginPresenter.onShowHistoryClick()}"
                     android:src="@{historyShow?@drawable/ic_keyboard_arrow_up_black_24dp:@drawable/ic_keyboard_arrow_down_black_24dp}" />
 
             </FrameLayout>
@@ -104,9 +100,6 @@
                 app:passwordToggleEnabled="true">
 
                 <EditText
-                    android:maxLength="40"
-                    android:paddingStart="@dimen/safe_spacing"
-                    android:paddingEnd="@dimen/safe_spacing"
                     android:id="@+id/password"
                     style="@style/EditStyle"
                     android:layout_width="match_parent"
@@ -116,7 +109,10 @@
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
+                    android:maxLength="40"
                     android:maxLines="1"
+                    android:paddingStart="@dimen/safe_spacing"
+                    android:paddingEnd="@dimen/safe_spacing"
                     android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -127,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_36"
-                android:onClick="@{()->loginListener.onLoginButtonClick()}"
+                android:onClick="@{()->loginPresenter.onLoginButtonClick()}"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 

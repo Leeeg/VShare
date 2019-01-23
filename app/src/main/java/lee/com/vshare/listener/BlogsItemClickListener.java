@@ -7,6 +7,6 @@ import lee.com.vshare.model.ex.Blogs;
  * Describe:
  * Coder: lee
  */
-public interface BlogsItemClickListener {
+public interface BlogsItemClickListener<T> {
     void onClick(Blogs blogs);
 }

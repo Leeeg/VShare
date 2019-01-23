@@ -13,4 +13,8 @@ public interface LoginPresenter {
 
     void onTextChanged(CharSequence s, int start, int before, int count);
 
+    void onLoginButtonClick();
+
+    void onShowHistoryClick();
+
 }

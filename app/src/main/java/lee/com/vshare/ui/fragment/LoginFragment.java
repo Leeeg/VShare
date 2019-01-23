@@ -1,7 +1,6 @@
 package lee.com.vshare.ui.fragment;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
@@ -22,7 +20,6 @@ import lee.com.vshare.databinding.FragmentLoginBinding;
 import lee.com.vshare.db.entity.LoginHistoryEntity;
 import lee.com.vshare.db.entity.ex.LoginHistory;
 import lee.com.vshare.listener.LoginHistoryItemClickListener;
-import lee.com.vshare.listener.LoginListener;
 import lee.com.vshare.ui.BaseFragment;
 import lee.com.vshare.ui.activity.LoginActivity;
 import lee.com.vshare.ui.activity.MainActivity;
@@ -64,21 +61,8 @@ public class LoginFragment extends BaseFragment {
         mBinding.loginHistoryRecycle.setLayoutManager(layoutManager);
         mBinding.loginHistoryRecycle.setAdapter(mAdapter);
 
-        mBinding.setLoginListener(loginListener);
-        mBinding.setLoginPresenter(new LoginPresenter() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                Log.d("Lee_Login", "onFocusChange : hasFocus = " + hasFocus);
-                if (!hasFocus){
-                    mBinding.setHistoryShow(false);
-                }
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.d("Lee_Login", "onFocusChange : s = " + s);
-            }
-        });
+//        mBinding.setLoginListener(loginListener);
+        mBinding.setLoginPresenter(presenter);
 
 
         return mBinding.getRoot();
@@ -114,19 +98,35 @@ public class LoginFragment extends BaseFragment {
         });
     }
 
-    private final LoginListener loginListener = new LoginListener() {
+    private final LoginPresenter presenter = new LoginPresenter() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            Log.d("Lee_Login", "onFocusChange : hasFocus = " + hasFocus);
+            if (!hasFocus) {
+                mBinding.setHistoryShow(false);
+            }
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            Log.d("Lee_Login", "onFocusChange : s = " + s);
+        }
+
         @Override
         public void onLoginButtonClick() {
+            Log.d("Lee_Login", "onLoginButtonClick");
             ((LoginActivity) getActivity()).startActivity(new Intent((LoginActivity) getActivity(), MainActivity.class));
             ((LoginActivity) getActivity()).finish();
         }
 
         @Override
         public void onShowHistoryClick() {
+            Log.d("Lee_Login", "onShowHistoryClick");
             mBinding.setHistoryShow(!mBinding.getHistoryShow());
-            if (mBinding.getHistoryShow()){
+            if (mBinding.getHistoryShow()) {
                 mBinding.email.requestFocus();
             }
+
         }
     };
 
