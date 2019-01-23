@@ -10,10 +10,14 @@
     <color name="blackTitle">#0f0b0d</color>
     <color name="primaryTitle">#008577</color>
 
-    <color name="lineGray">#757575</color>
-    <color name="editGray">#D1CFCF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="bgwhite">#F7F7F7</color>
+    <color name="bggry">#E5E5E5</color>
+
+    <color name="lineGray">#CFCFCF</color>
+    <color name="editGray">#CFCFCF</color>
     <color name="textBlack">#2B2B2B</color>
     <color name="textGray">#A0A0A0</color>
     <color name="textGreen">#008577</color>
-    <color name="textRed">#FF0000</color>
+    <color name="textRed">#EE0000</color>
 </resources>

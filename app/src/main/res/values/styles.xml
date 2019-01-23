@@ -30,14 +30,21 @@
     <style name="hintAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/textGreen</item>
     </style>
+    <!-- 设置计数器的字体样式 -->
+    <style name="lengthAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/textGreen</item>
+        <item name="android:textSize">@dimen/sp_12</item>
+    </style>
     <!-- 设置超出长度提示文字样式 -->
     <style name="overAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/textRed</item>
+        <item name="android:textSize">@dimen/sp_12</item>
     </style>
     <!-- 设置错误提示文字样式 -->
     <style name="errorAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/textRed</item>
     </style>
+
     <!--Edit-->
     <style name="EditStyle" parent="TextAppearance.AppCompat">
         <item name="android:background">@android:color/transparent</item>

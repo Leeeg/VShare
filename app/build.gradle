@@ -60,11 +60,6 @@ dependencies {
     implementation deps.room.runtime
     annotationProcessor deps.room.compiler
 
-    //custom
-    implementation deps.constraint_layout
-    implementation deps.glide.runtime
-    annotationProcessor deps.glide.compiler
-
     // Android Testing Support Library's runner and rules
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.atsl.rules
@@ -82,6 +77,16 @@ dependencies {
     androidTestImplementation deps.support.app_compat
     androidTestImplementation deps.support.design
 
-    // 检查更新并后台下载
+    // RX
+    androidTestImplementation deps.rxjava2
+    androidTestImplementation deps.rx_android
+
+    // Custom
+    implementation deps.constraint_layout
+    implementation deps.glide.runtime
+    annotationProcessor deps.glide.compiler
     implementation "com.lee.versioncheck:versioncheck:1.0.5"
+    implementation group: 'com.tbruyelle.rxpermissions', name: 'rxpermissions', version: '0.9.4'
+
+
 }

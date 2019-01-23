@@ -17,4 +17,8 @@ public interface LoginPresenter {
 
     void onShowHistoryClick();
 
+    void onRetrieveClick();
+
+    void onSingUpClick();
+
 }

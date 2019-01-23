@@ -16,6 +16,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import lee.com.vshare.R;
+import lee.com.vshare.bean.LoginBean;
 import lee.com.vshare.databinding.FragmentLoginBinding;
 import lee.com.vshare.db.entity.LoginHistoryEntity;
 import lee.com.vshare.db.entity.ex.LoginHistory;
@@ -54,6 +55,8 @@ public class LoginFragment extends BaseFragment {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
 
         mBinding.setHistoryShow(false);
+        mBinding.setCleanShow(false);
+        mBinding.setLoginBean(new LoginBean());
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -61,9 +64,7 @@ public class LoginFragment extends BaseFragment {
         mBinding.loginHistoryRecycle.setLayoutManager(layoutManager);
         mBinding.loginHistoryRecycle.setAdapter(mAdapter);
 
-//        mBinding.setLoginListener(loginListener);
         mBinding.setLoginPresenter(presenter);
-
 
         return mBinding.getRoot();
 
@@ -109,12 +110,20 @@ public class LoginFragment extends BaseFragment {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            Log.d("Lee_Login", "onFocusChange : s = " + s);
+            Log.d("Lee_Login", "onTextChanged : s = " + s);
+            if (mBinding.getCleanShow() && s.toString().equals("")) {
+                mBinding.setCleanShow(false);
+            } else if (!mBinding.getCleanShow() && !s.toString().equals("")) {
+                mBinding.setCleanShow(true);
+            }
         }
 
         @Override
         public void onLoginButtonClick() {
-            Log.d("Lee_Login", "onLoginButtonClick");
+            String addr = mBinding.getLoginBean().getAddr();
+            String password = mBinding.getLoginBean().getPassword();
+            Log.d("Lee_Login", "onLoginButtonClick :   addr = " + addr + "  password = " + password);
+
             ((LoginActivity) getActivity()).startActivity(new Intent((LoginActivity) getActivity(), MainActivity.class));
             ((LoginActivity) getActivity()).finish();
         }
@@ -126,6 +135,18 @@ public class LoginFragment extends BaseFragment {
             if (mBinding.getHistoryShow()) {
                 mBinding.email.requestFocus();
             }
+
+        }
+
+        @Override
+        public void onRetrieveClick() {
+            Log.d("Lee_Login", "onRetrieveClick");
+
+        }
+
+        @Override
+        public void onSingUpClick() {
+            Log.d("Lee_Login", "onSingUpClick");
 
         }
     };
