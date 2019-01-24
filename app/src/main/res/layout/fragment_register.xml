@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+        <LinearLayout
+            android:id="@+id/email_login_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/safe_spacing"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_50"
+                android:layout_marginBottom="@dimen/dp_30"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/sp_18"
+                android:hint="@string/sign_up_addr_hint"
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:paddingStart="@dimen/safe_spacing"
+                android:paddingEnd="@dimen/safe_spacing"
+                android:hint="@string/prompt_email"
+                android:inputType="textEmailAddress"
+                android:maxLength="40"
+                android:maxLines="1"
+                android:background="@color/editGray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50">
+
+                <EditText
+                    android:paddingStart="@dimen/safe_spacing"
+                    android:paddingEnd="@dimen/safe_spacing"
+                    android:background="@color/editGray"
+                    android:hint="@string/prompt_code"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:maxLines="1"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:text="@string/action_send"
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_36"
+                android:text="@string/action_next"
+                android:textStyle="bold" />
+
+            <TextView
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/textGreen"
+                android:paddingEnd="@dimen/safe_spacing"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_gravity="right"
+                android:text="@string/retrieve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+</layout>

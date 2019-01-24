@@ -76,6 +76,7 @@ public class LoginFragment extends BaseFragment {
         if (mBinding.getHistoryShow()) {
             mBinding.setHistoryShow(false);
         }
+        ((LoginActivity)getActivity()).setTitle(LoginActivity.TITLE_SIGNIN);
     }
 
     @Override
@@ -135,19 +136,18 @@ public class LoginFragment extends BaseFragment {
             if (mBinding.getHistoryShow()) {
                 mBinding.email.requestFocus();
             }
-
         }
 
         @Override
         public void onRetrieveClick() {
             Log.d("Lee_Login", "onRetrieveClick");
-
+            ((LoginActivity)getActivity()).showRetrieve();
         }
 
         @Override
         public void onSingUpClick() {
             Log.d("Lee_Login", "onSingUpClick");
-
+            ((LoginActivity)getActivity()).showRegister();
         }
     };
 
