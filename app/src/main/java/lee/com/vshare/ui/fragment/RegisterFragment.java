@@ -12,6 +12,7 @@ import lee.com.vshare.R;
 import lee.com.vshare.databinding.FragmentRegisterBinding;
 import lee.com.vshare.ui.BaseFragment;
 import lee.com.vshare.ui.activity.LoginActivity;
+import lee.com.vshare.ui.presenter.RegisterPresenter;
 
 
 /**
@@ -21,7 +22,7 @@ import lee.com.vshare.ui.activity.LoginActivity;
  */
 public class RegisterFragment extends BaseFragment {
 
-    public static final String TAG = "LogupFragment";
+    public static final String TAG = "RegisterFragment";
 
     private FragmentRegisterBinding mBinding;
 
@@ -38,6 +39,8 @@ public class RegisterFragment extends BaseFragment {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false);
 
+        mBinding.setRegisterPresenter(registerPresenter);
+
         return mBinding.getRoot();
 
     }
@@ -47,5 +50,12 @@ public class RegisterFragment extends BaseFragment {
         super.onResume();
         ((LoginActivity)getActivity()).setTitle(LoginActivity.TITLE_REGISTER);
     }
+
+    private final RegisterPresenter registerPresenter = new RegisterPresenter() {
+        @Override
+        public void onNextClick() {
+            ((LoginActivity)getActivity()).showSignUp();
+        }
+    };
 
 }

@@ -10,7 +10,9 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_newpassword">New Password</string>
+    <string name="prompt_password_again">countersign</string>
     <string name="prompt_code">Code</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_up">Sign up</string>
@@ -25,6 +27,7 @@
     <string name="retrieve">Retrieve Password</string>
     <string name="no_account">No Account ?</string>
     <string name="sign_up">Sign Up</string>
+    <string name="password_sure">Sure</string>
     <string name="sign_up_addr_hint">Input your Email to get code</string>
     <string name="sign_up_password_hint">Input your password</string>
 

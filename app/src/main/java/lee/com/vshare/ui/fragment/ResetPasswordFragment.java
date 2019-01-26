@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import lee.com.vshare.R;
-import lee.com.vshare.databinding.FragmentSignupBinding;
+import lee.com.vshare.databinding.FragmentResetpasswordBinding;
 import lee.com.vshare.ui.BaseFragment;
 
 
@@ -18,14 +18,14 @@ import lee.com.vshare.ui.BaseFragment;
  * Describe:
  * Coder: lee
  */
-public class SignUpFragment extends BaseFragment {
+public class ResetPasswordFragment extends BaseFragment {
 
-    public static final String TAG = "SignUpFragment";
+    public static final String TAG = "ResetPasswordFragment";
 
-    private FragmentSignupBinding mBinding;
+    private FragmentResetpasswordBinding mBinding;
 
-    public static SignUpFragment newInstance() {
-        final SignUpFragment fragment = new SignUpFragment();
+    public static ResetPasswordFragment newInstance() {
+        final ResetPasswordFragment fragment = new ResetPasswordFragment();
         final Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -35,7 +35,7 @@ public class SignUpFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_signup, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_resetpassword, container, false);
 
         return mBinding.getRoot();
 

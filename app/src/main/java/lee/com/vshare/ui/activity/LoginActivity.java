@@ -13,6 +13,7 @@ import lee.com.vshare.ui.BaseActivity;
 import lee.com.vshare.ui.BaseFragment;
 import lee.com.vshare.ui.fragment.LoginFragment;
 import lee.com.vshare.ui.fragment.RegisterFragment;
+import lee.com.vshare.ui.fragment.ResetPasswordFragment;
 import lee.com.vshare.ui.fragment.RetrieveFragment;
 import lee.com.vshare.ui.fragment.SignUpFragment;
 
@@ -105,6 +106,14 @@ public class LoginActivity extends BaseActivity {
             retrieveFragment = RetrieveFragment.newInstance();
         }
         showFragment(retrieveFragment, RetrieveFragment.TAG);
+    }
+
+    public void showResetPasswordFragment() {
+        ResetPasswordFragment resetPasswordFragment = (ResetPasswordFragment) fragmentManager.findFragmentByTag(ResetPasswordFragment.TAG);
+        if (null == resetPasswordFragment) {
+            resetPasswordFragment = ResetPasswordFragment.newInstance();
+        }
+        showFragment(resetPasswordFragment, ResetPasswordFragment.TAG);
     }
 
     @Override

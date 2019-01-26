@@ -12,6 +12,7 @@ import lee.com.vshare.R;
 import lee.com.vshare.databinding.FragmentRetrieveBinding;
 import lee.com.vshare.ui.BaseFragment;
 import lee.com.vshare.ui.activity.LoginActivity;
+import lee.com.vshare.ui.presenter.RetrievePresenter;
 
 
 /**
@@ -38,6 +39,8 @@ public class RetrieveFragment extends BaseFragment {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_retrieve, container, false);
 
+        mBinding.setRetrievePresenter(retrievePresenter);
+
         return mBinding.getRoot();
 
     }
@@ -45,7 +48,14 @@ public class RetrieveFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        ((LoginActivity)getActivity()).setTitle(LoginActivity.TITLE_RETRIEVE);
+        ((LoginActivity) getActivity()).setTitle(LoginActivity.TITLE_RETRIEVE);
     }
+
+    private final RetrievePresenter retrievePresenter = new RetrievePresenter() {
+        @Override
+        public void onNextClick() {
+            ((LoginActivity) getActivity()).showResetPasswordFragment();
+        }
+    };
 
 }
