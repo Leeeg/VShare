@@ -80,9 +80,9 @@
 
     <dimen name="title_txt_main">18dp</dimen>
 
-    <dimen name="item_blog_title">16dp</dimen>
-    <dimen name="item_blog_describe">14dp</dimen>
-    <dimen name="item_blog_action">10dp</dimen>
+    <dimen name="item_title">16dp</dimen>
+    <dimen name="item_describe">14dp</dimen>
+    <dimen name="item_action">10dp</dimen>
 
 
     <dimen name="sp_8">8sp</dimen>

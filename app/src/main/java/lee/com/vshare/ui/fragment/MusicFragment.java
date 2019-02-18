@@ -14,49 +14,51 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 import lee.com.vshare.R;
-import lee.com.vshare.databinding.FragmentBlogsBinding;
+import lee.com.vshare.databinding.FragmentMusicBinding;
 import lee.com.vshare.listener.ItemClickListener;
-import lee.com.vshare.model.ex.Blogs;
+import lee.com.vshare.model.ex.Music;
 import lee.com.vshare.ui.BaseFragment;
-import lee.com.vshare.ui.adapter.BlogsAdapter;
-import lee.com.vshare.viewmodel.BlogsViewModel;
+import lee.com.vshare.ui.adapter.MusicAdapter;
+import lee.com.vshare.viewmodel.MusicViewModel;
 
 /**
  * CreateDate：18-12-29 on 下午2:59
  * Describe:
  * Coder: lee
  */
-public class BlogsFragment extends BaseFragment{
+public class MusicFragment extends BaseFragment {
 
-    public static final String TAG = "BlogsFragment";
+    public static final String TAG = "MusicFragment";
 
-    private FragmentBlogsBinding mBinding;
-    private BlogsAdapter mAdapter;
+    private FragmentMusicBinding mBinding;
+    private MusicAdapter mAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_blogs, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_music, container, false);
 
-        mAdapter = new BlogsAdapter(itemClickListener);
-        mBinding.blogsRecycle.setAdapter(mAdapter);
+        mAdapter = new MusicAdapter(itemClickListener);
+        mBinding.musicRecycle.setAdapter(mAdapter);
         return mBinding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        final BlogsViewModel viewModel = ViewModelProviders.of(this).get(BlogsViewModel.class);
 
-        subscribeUi(viewModel.getBlogs());
+        final MusicViewModel viewModel = ViewModelProviders.of(this).get(MusicViewModel.class);
+
+        subscribeUi(viewModel.getMusic());
+
     }
-
-    private void subscribeUi(LiveData<List<Blogs>> liveData) {
+    
+    private void subscribeUi(LiveData<List<Music>> liveData) {
         // Update the list when the data changes
-        liveData.observe(this, (blogsList) -> {
-            if (blogsList != null) {
-                mAdapter.setBlogsList(blogsList);
+        liveData.observe(this, (recreation) -> {
+            if (recreation != null) {
+                mAdapter.setMusicList(recreation);
             }
             // espresso does not know how to wait for data binding's loop so we execute changes
             // sync.
@@ -64,15 +66,14 @@ public class BlogsFragment extends BaseFragment{
         });
     }
 
-    public static BlogsFragment newInstance() {
-        final BlogsFragment fragment = new BlogsFragment();
+    public static MusicFragment newInstance() {
+        final MusicFragment fragment = new MusicFragment();
         final Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
-
-    private final ItemClickListener<Blogs> itemClickListener = (blogs) -> {
-        Log.d("Lee_Blog", "id = " + blogs.getBlogId());
+    
+    private final ItemClickListener<Music> itemClickListener = (recreation) -> {
+        Log.d("Lee_Music", "id = " + recreation.getMusicId());
     };
-
 }

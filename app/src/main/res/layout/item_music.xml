@@ -7,8 +7,8 @@
         <import type="lee.com.vshare.util.StringUtils" />
 
         <variable
-            name="blogs"
-            type="lee.com.vshare.model.ex.Blogs" />
+            name="Music"
+            type="lee.com.vshare.model.ex.Music" />
 
         <variable
             name="listener"
@@ -17,15 +17,15 @@
 
     <FrameLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/safe_spacing"
         android:layout_marginTop="@dimen/safe_spacing"
-        android:layout_marginEnd="@dimen/safe_spacing"
-        android:layout_height="wrap_content">
+        android:layout_marginEnd="@dimen/safe_spacing">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{()->listener.onItemClick(blogs)}">
+            android:onClick="@{()->listener.onItemClick(Music)}">
 
             <TextView
                 android:id="@+id/textView1"
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="@{blogs.blogTitle}"
+                android:text="@{Music.MusicTitle}"
                 android:textColor="@color/blackTitle"
                 android:textSize="@dimen/item_title"
                 android:textStyle="bold"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="@{blogs.describe}"
+                android:text="@{Music.describe}"
                 android:textSize="@dimen/item_describe"
                 app:layout_constraintEnd_toStartOf="@+id/imageView0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +110,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
                 app:srcCompat="@drawable/icon" />
 
-            <!--action of blog-->
+            <!--action of Music-->
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
                 android:layout_marginStart="@dimen/dp_4"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
-                android:text="@{``+blogs.blogReads}"
+                android:text="@{``+Music.MusicReads}"
                 android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -150,7 +150,7 @@
                 android:layout_marginStart="@dimen/dp_4"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
-                android:text="@{``+blogs.blogLikes}"
+                android:text="@{``+Music.MusicLikes}"
                 android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -173,7 +173,7 @@
                 android:layout_marginStart="@dimen/dp_4"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
-                android:text="@{``+blogs.share}"
+                android:text="@{``+Music.share}"
                 android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
@@ -196,7 +196,7 @@
                 android:layout_marginStart="@dimen/dp_4"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
-                android:text="@{blogs.blogAuthorName ?? `unknown`}"
+                android:text="@{Music.MusicAuthorName ?? `unknown`}"
                 android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView7"
@@ -219,18 +219,18 @@
                 android:layout_marginStart="@dimen/dp_4"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
-                android:text="@{StringUtils.dataToString(blogs.blogModifiedTime)}"
+                android:text="@{StringUtils.dataToString(Music.MusicModifiedTime)}"
                 android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
             <View
-                android:foreground="@color/navigationColor"
-                android:layout_marginTop="@dimen/dp_3"
-                app:layout_constraintTop_toBottomOf="@+id/textView8"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_p5"/>
+                android:layout_height="@dimen/dp_p5"
+                android:layout_marginTop="@dimen/dp_3"
+                android:foreground="@color/navigationColor"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
