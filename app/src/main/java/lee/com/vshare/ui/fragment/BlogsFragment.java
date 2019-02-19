@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import lee.com.vshare.R;
 import lee.com.vshare.databinding.FragmentBlogsBinding;
 import lee.com.vshare.listener.ItemClickListener;
@@ -41,6 +42,7 @@ public class BlogsFragment extends BaseFragment{
 
         mAdapter = new BlogsAdapter(itemClickListener);
         mBinding.blogsRecycle.setAdapter(mAdapter);
+        mBinding.blogsRecycle.setHasFixedSize(true);
         return mBinding.getRoot();
     }
 

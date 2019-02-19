@@ -28,10 +28,12 @@ public class RecreationViewModel extends AndroidViewModel {
         mObservableFragments.setValue(null);
 
         Map<String, Fragment> fragmentsMap = new HashMap<>();
-        for (int i = 0; i < 3; i++) {
-            Fragment fragment = MusicFragment.newInstance();
-            fragmentsMap.put("Tab " + i, fragment);
-        }
+        Fragment fragment0 = MusicFragment.newInstance();
+        Fragment fragment1 = MusicFragment.newInstance();
+        Fragment fragment2 = MusicFragment.newInstance();
+        fragmentsMap.put("Picture", fragment0);
+        fragmentsMap.put("Music", fragment1);
+        fragmentsMap.put("Video", fragment2);
 
         MediatorLiveData<Map<String, Fragment>> fragmentList = new MediatorLiveData<>();
         fragmentList.setValue(fragmentsMap);
