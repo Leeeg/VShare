@@ -143,6 +143,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         navigation = findViewById(R.id.navigation);
         navigation.setEnabled(false);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_home);
 
     }
 
