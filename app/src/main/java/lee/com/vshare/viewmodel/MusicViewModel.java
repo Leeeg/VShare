@@ -31,7 +31,7 @@ public class MusicViewModel extends AndroidViewModel {
         for (int i = 0; i < 20; i++) {
             MusicModel recreation = new MusicModel();
             recreation.setMusicId(i);
-            recreation.setMusicTitle("recreation : " + i);
+            recreation.setMusicTitle("music : " + i);
             list.add(recreation);
         }
 

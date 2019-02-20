@@ -7,7 +7,7 @@
         <import type="lee.com.vshare.util.StringUtils" />
 
         <variable
-            name="Music"
+            name="music"
             type="lee.com.vshare.model.ex.Music" />
 
         <variable
@@ -25,7 +25,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{()->listener.onItemClick(Music)}">
+            android:onClick="@{()->listener.onItemClick(music)}">
 
             <TextView
                 android:id="@+id/textView1"
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="@{Music.MusicTitle}"
+                android:text="@{music.MusicTitle}"
                 android:textColor="@color/blackTitle"
                 android:textSize="@dimen/item_title"
                 android:textStyle="bold"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="@{Music.describe}"
+                android:text="@{music.describe}"
                 android:textSize="@dimen/item_describe"
                 app:layout_constraintEnd_toStartOf="@+id/imageView0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +127,7 @@
                 android:layout_marginStart="@dimen/dp_4"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
-                android:text="@{``+Music.MusicReads}"
+                android:text="@{``+music.MusicReads}"
                 android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -150,7 +150,7 @@
                 android:layout_marginStart="@dimen/dp_4"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
-                android:text="@{``+Music.MusicLikes}"
+                android:text="@{``+music.MusicLikes}"
                 android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -173,7 +173,7 @@
                 android:layout_marginStart="@dimen/dp_4"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
-                android:text="@{``+Music.share}"
+                android:text="@{``+music.share}"
                 android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
@@ -196,7 +196,7 @@
                 android:layout_marginStart="@dimen/dp_4"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
-                android:text="@{Music.MusicAuthorName ?? `unknown`}"
+                android:text="@{music.MusicAuthorName ?? `unknown`}"
                 android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView7"
@@ -219,7 +219,7 @@
                 android:layout_marginStart="@dimen/dp_4"
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
-                android:text="@{StringUtils.dataToString(Music.MusicModifiedTime)}"
+                android:text="@{StringUtils.dataToString(music.MusicModifiedTime)}"
                 android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintEnd_toEndOf="parent"

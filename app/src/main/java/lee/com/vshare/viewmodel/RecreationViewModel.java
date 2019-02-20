@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MediatorLiveData;
 import lee.com.vshare.ui.fragment.MusicFragment;
+import lee.com.vshare.ui.fragment.VideoFragment;
 
 /**
  * CreateDate：19-1-3 on 下午3:41
@@ -30,7 +31,7 @@ public class RecreationViewModel extends AndroidViewModel {
         Map<String, Fragment> fragmentsMap = new HashMap<>();
         Fragment fragment0 = MusicFragment.newInstance();
         Fragment fragment1 = MusicFragment.newInstance();
-        Fragment fragment2 = MusicFragment.newInstance();
+        Fragment fragment2 = VideoFragment.newInstance();
         fragmentsMap.put("Picture", fragment0);
         fragmentsMap.put("Music", fragment1);
         fragmentsMap.put("Video", fragment2);
@@ -41,7 +42,7 @@ public class RecreationViewModel extends AndroidViewModel {
         mObservableFragments.addSource(fragmentList, mObservableFragments::setValue);
     }
 
-    public MediatorLiveData<Map<String, Fragment>> getmObservableFragments() {
+    public MediatorLiveData<Map<String, Fragment>> getFragments() {
         return mObservableFragments;
     }
 }

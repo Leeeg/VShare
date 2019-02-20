@@ -46,6 +46,7 @@
     <string name="blog_fragment_notes">List of Notes in blogFragment</string>
     <string name="recreation_fragment_notes">List of Notes in recreationFragment</string>
     <string name="message_fragment_notes">List of Notes in messageFragment</string>
+    <string name="video_fragment_notes">List of Notes in videoFragment</string>
 
     <!-- Strings related to common -->
     <string name="unknown">unknown</string>

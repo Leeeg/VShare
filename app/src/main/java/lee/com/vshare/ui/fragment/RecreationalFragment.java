@@ -47,7 +47,7 @@ public class RecreationalFragment extends BaseFragment {
 
         final RecreationViewModel viewModel = ViewModelProviders.of(this).get(RecreationViewModel.class);
 
-        subscribeUi(viewModel.getmObservableFragments());
+        subscribeUi(viewModel.getFragments());
     }
 
     private void subscribeUi(LiveData<Map<String, Fragment>> liveData) {
