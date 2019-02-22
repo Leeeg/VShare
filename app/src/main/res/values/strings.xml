@@ -47,6 +47,9 @@
     <string name="recreation_fragment_notes">List of Notes in recreationFragment</string>
     <string name="message_fragment_notes">List of Notes in messageFragment</string>
     <string name="video_fragment_notes">List of Notes in videoFragment</string>
+    <string name="music_fragment_notes">List of Notes in musicFragment</string>
+    <string name="picture_fragment_notes">List of Notes in pictureFragment</string>
+    <string name="chats_fragment_notes">List of Notes in chatsFragment</string>
 
     <!-- Strings related to common -->
     <string name="unknown">unknown</string>

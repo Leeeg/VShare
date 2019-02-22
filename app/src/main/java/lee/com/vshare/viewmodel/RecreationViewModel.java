@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MediatorLiveData;
 import lee.com.vshare.ui.fragment.MusicFragment;
+import lee.com.vshare.ui.fragment.PictureFragment;
 import lee.com.vshare.ui.fragment.VideoFragment;
 
 /**
@@ -29,7 +30,7 @@ public class RecreationViewModel extends AndroidViewModel {
         mObservableFragments.setValue(null);
 
         Map<String, Fragment> fragmentsMap = new HashMap<>();
-        Fragment fragment0 = MusicFragment.newInstance();
+        Fragment fragment0 = PictureFragment.newInstance();
         Fragment fragment1 = MusicFragment.newInstance();
         Fragment fragment2 = VideoFragment.newInstance();
         fragmentsMap.put("Picture", fragment0);

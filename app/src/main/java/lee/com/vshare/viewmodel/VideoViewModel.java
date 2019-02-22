@@ -38,6 +38,7 @@ public class VideoViewModel extends AndroidViewModel {
             VideoModel recreation = new VideoModel();
             recreation.setVideoId(i);
             recreation.setVideoTitle("video : " + i);
+            recreation.setDescribe("this is the video " + i);
             list.add(recreation);
         }
 

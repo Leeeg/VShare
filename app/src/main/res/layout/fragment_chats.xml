@@ -10,10 +10,10 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/music_recycle"
+            android:id="@+id/chats_recycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/music_fragment_notes"
+            android:contentDescription="@string/chats_fragment_notes"
             app:layoutManager="LinearLayoutManager" />
 
     </LinearLayout>

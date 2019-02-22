@@ -25,7 +25,7 @@
             android:onClick="@{()->listener.onItemClick(video)}">
 
             <ImageView
-                android:id="@+id/imageView0"
+                android:id="@+id/video_cover"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
@@ -33,6 +33,28 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/icon" />
+
+            <TextView
+                android:id="@+id/video_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{video.VideoTitle}"
+                android:textColor="@color/blackTitle"
+                android:textSize="@dimen/item_title"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/video_cover"/>
+
+            <TextView
+                android:id="@+id/video_describe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{video.describe}"
+                android:textSize="@dimen/item_describe"
+                app:layout_constraintTop_toBottomOf="@+id/video_title"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

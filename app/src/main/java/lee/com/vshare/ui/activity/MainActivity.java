@@ -152,7 +152,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            moveTaskToBack(true);
         }
     }
 
@@ -227,5 +227,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         tabIndex = currentIndex;
         navigation.setEnabled(true);
     }
+
 
 }

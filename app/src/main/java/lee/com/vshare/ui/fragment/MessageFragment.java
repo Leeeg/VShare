@@ -54,7 +54,7 @@ public class MessageFragment extends BaseFragment {
         // Update the list when the data changes
         liveData.observe(this, (fragments) -> {
             if (fragments != null) {
-                Log.d("Lee_Music", "setMusicList");
+                Log.d("Lee_MessageFragment", "setMessageFragmentList");
                 initPage(fragments);
             }
             // espresso does not know how to wait for data binding's loop so we execute changes
@@ -68,6 +68,7 @@ public class MessageFragment extends BaseFragment {
         mBinding.viewpager.setAdapter(new ViewPagerAdapter(getChildFragmentManager(),
                 new ArrayList<Fragment>(fragmentStringMap.values()),
                 new ArrayList<String>(fragmentStringMap.keySet())));
+        mBinding.viewpager.setCurrentItem(1);
         mBinding.tab.setupWithViewPager(mBinding.viewpager);
     }
 

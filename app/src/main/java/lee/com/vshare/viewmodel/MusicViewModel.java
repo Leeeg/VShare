@@ -29,16 +29,17 @@ public class MusicViewModel extends AndroidViewModel {
 
         List<Music> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            MusicModel recreation = new MusicModel();
-            recreation.setMusicId(i);
-            recreation.setMusicTitle("music : " + i);
-            list.add(recreation);
+            MusicModel music = new MusicModel();
+            music.setMusicId(i);
+            music.setMusicTitle("music : " + i);
+            music.setDescribe("this is music " + i);
+            list.add(music);
         }
 
-        MediatorLiveData<List<Music>> recreationList = new MediatorLiveData<>();
-        recreationList.setValue(list);
+        MediatorLiveData<List<Music>> musicList = new MediatorLiveData<>();
+        musicList.setValue(list);
 
-        mObservableMusic.addSource(recreationList, mObservableMusic::setValue);
+        mObservableMusic.addSource(musicList, mObservableMusic::setValue);
     }
 
     public MediatorLiveData<List<Music>> getMusic() {

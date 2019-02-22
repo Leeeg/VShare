@@ -3,12 +3,14 @@ package lee.com.vshare.viewmodel;
 import android.app.Application;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MediatorLiveData;
+import lee.com.vshare.ui.fragment.ChatsFragment;
 import lee.com.vshare.ui.fragment.MusicFragment;
 
 /**
@@ -27,11 +29,11 @@ public class MessageViewModel extends AndroidViewModel {
 
         mObservableFragments.setValue(null);
 
-        Map<String, Fragment> fragmentsMap = new HashMap<>();
-        Fragment fragment0 = MusicFragment.newInstance();
-        Fragment fragment1 = MusicFragment.newInstance();
-        fragmentsMap.put("Chats", fragment0);
-        fragmentsMap.put("Contacts", fragment1);
+        Map<String, Fragment> fragmentsMap = new LinkedHashMap<>();
+        Fragment fragmentContacts = MusicFragment.newInstance();
+        Fragment fragmentChats = ChatsFragment.newInstance();
+        fragmentsMap.put("Contacts", fragmentContacts);
+        fragmentsMap.put("Chats", fragmentChats);
 
         MediatorLiveData<Map<String, Fragment>> fragmentList = new MediatorLiveData<>();
         fragmentList.setValue(fragmentsMap);

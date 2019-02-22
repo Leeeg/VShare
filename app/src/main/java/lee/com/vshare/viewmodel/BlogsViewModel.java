@@ -32,6 +32,7 @@ public class BlogsViewModel extends AndroidViewModel {
             BlogsModel blogs = new BlogsModel();
             blogs.setBlogId(i);
             blogs.setBlogTitle("Blogs : " + i);
+            blogs.setDescribe("this is the Blogs " + i);
             list.add(blogs);
         }
 

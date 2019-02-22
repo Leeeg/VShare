@@ -100,20 +100,18 @@ public class VideoFragment extends BaseFragment {
         fragment.setArguments(args);
         return fragment;
     }
-    
-    private final ItemClickListener<Video> itemClickListener = (recreation) -> {
-        Log.d(TAG, "id = " + recreation.getVideoId());
-    };
+
+    private final ItemClickListener<Video> itemClickListener = (recreation) -> Log.d(TAG, "id = " + recreation.getVideoId());
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         mBinding.videoBanner.startAutoPlay();
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onPause() {
+        super.onPause();
         mBinding.videoBanner.stopAutoPlay();
     }
 }

@@ -17,6 +17,7 @@
 package lee.com.vshare;
 
 import android.app.Application;
+import android.content.Context;
 
 import lee.com.vshare.db.AppDatabase;
 
@@ -27,11 +28,13 @@ import lee.com.vshare.db.AppDatabase;
 public class BasicApp extends Application {
 
     private AppExecutors mAppExecutors;
+    private static BasicApp basicApp;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
+        basicApp = this;
         mAppExecutors = new AppExecutors();
     }
 
@@ -42,4 +45,9 @@ public class BasicApp extends Application {
     public DataRepository getRepository() {
         return DataRepository.getInstance(getDatabase());
     }
+
+    public static BasicApp getInstance() {
+        return basicApp;
+    }
+
 }
