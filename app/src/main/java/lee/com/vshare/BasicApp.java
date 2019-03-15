@@ -20,6 +20,7 @@ import android.app.Application;
 import android.content.Context;
 
 import lee.com.vshare.db.AppDatabase;
+import lee.com.vshare.util.AudioConfig;
 
 
 /**
@@ -36,6 +37,7 @@ public class BasicApp extends Application {
 
         basicApp = this;
         mAppExecutors = new AppExecutors();
+
     }
 
     public AppDatabase getDatabase() {

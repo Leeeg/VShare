@@ -56,4 +56,11 @@
 
     <!-- Strings related to description -->
     <string name="login_recycle">Login History</string>
+
+
+    <!-- Strings related to tagFlowLayout -->
+    <string name="gravity_left">left</string>
+    <string name="gravity_center">center</string>
+    <string name="gravity_right">right</string>
+
 </resources>

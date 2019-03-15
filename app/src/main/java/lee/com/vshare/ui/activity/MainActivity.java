@@ -1,15 +1,20 @@
 package lee.com.vshare.ui.activity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -27,6 +32,8 @@ import lee.com.vshare.ui.fragment.MessageFragment;
 import lee.com.vshare.ui.fragment.RecreationalFragment;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = "MainActivity";
 
     private FragmentManager fragmentManager;
 
@@ -54,6 +61,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         loadFragment(savedInstanceState);
 
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.BLUETOOTH_PRIVILEGED)
+                .subscribe(granted -> {
+                    if (granted) { // Always true pre-M
+                        // I can control the camera now
+                        Log.d(TAG, "permission.BLUETOOTH_PRIVILEGED  agreed");
+                    } else {
+                        // Oups permission denied
+                        Log.e(TAG, "permission.BLUETOOTH_PRIVILEGED  denied");
+                    }
+                });
     }
 
     private void init() {
@@ -119,7 +137,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                         if (null == recreationalFragment) {
                             recreationalFragment = RecreationalFragment.newInstance();
                             addFragment(recreationalFragment, TAB_INDEX_RECREATION, RecreationalFragment.TAG);
-                        }else {
+                        } else {
                             showFragment(TAB_INDEX_RECREATION);
                         }
                     }
@@ -130,7 +148,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                         if (null == messageFragment) {
                             messageFragment = MessageFragment.newInstance();
                             addFragment(messageFragment, TAB_INDEX_MESSAGE, MessageFragment.TAG);
-                        }else {
+                        } else {
                             showFragment(TAB_INDEX_MESSAGE);
                         }
                     }
