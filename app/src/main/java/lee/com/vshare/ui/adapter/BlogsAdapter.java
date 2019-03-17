@@ -47,11 +47,13 @@ public class BlogsAdapter extends RecyclerView.Adapter<BlogsAdapter.BlogsViewHol
     }
 
     public void setBlogsList(final List<? extends Blogs> blogsList) {
-        Log.d("Lee_BlogsAdapter", "setLoginHistoryList");
+        Log.d("Lee_BlogsAdapter", "setBlogsList");
         if (mBlogsList == null) {
             mBlogsList = blogsList;
+            Log.d("Lee_BlogsAdapter", "notifyItemRangeInserted");
             notifyItemRangeInserted(0, blogsList.size());
         } else {
+            Log.d("Lee_BlogsAdapter", "calculateDiff");
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
                 public int getOldListSize() {

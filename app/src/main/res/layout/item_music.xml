@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="lee.com.vshare.util.StringUtils" />
+
+        <variable
+            name="music"
+            type="lee.com.vshare.model.ex.Music" />
+
+        <variable
+            name="listener"
+            type="lee.com.vshare.listener.ItemClickListener" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/safe_spacing"
+        android:layout_marginTop="@dimen/safe_spacing"
+        android:layout_marginEnd="@dimen/safe_spacing">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_100"
+            android:onClick="@{()->listener.onItemClick(music)}">
+
+            <ImageView
+                android:id="@+id/music_cover"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="w,1:1"
+                app:srcCompat="@drawable/icon" />
+
+            <TextView
+                android:layout_marginStart="@dimen/dp_16"
+                android:id="@+id/music_title"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_40"
+                android:ellipsize="end"
+                android:gravity="bottom"
+                android:maxLines="2"
+                android:text="@{music.MusicTitle}"
+                android:textColor="@color/blackTitle"
+                android:textSize="@dimen/item_title"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@+id/music_cover" />
+
+            <TextView
+                android:layout_marginStart="@dimen/dp_16"
+                android:id="@+id/music_describe"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_40"
+                android:ellipsize="end"
+                android:gravity="top"
+                android:maxLines="2"
+                android:text="@{music.describe}"
+                android:textSize="@dimen/item_describe"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/music_cover"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</layout>

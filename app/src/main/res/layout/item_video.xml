@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="lee.com.vshare.util.StringUtils" />
+
+        <variable
+            name="video"
+            type="lee.com.vshare.model.ex.Video" />
+
+        <variable
+            name="listener"
+            type="lee.com.vshare.listener.ItemClickListener" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->listener.onItemClick(video)}">
+
+            <ImageView
+                android:id="@+id/video_cover"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="h,15:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon" />
+
+            <TextView
+                android:id="@+id/video_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{video.VideoTitle}"
+                android:textColor="@color/blackTitle"
+                android:textSize="@dimen/item_title"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/video_cover"/>
+
+            <TextView
+                android:id="@+id/video_describe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{video.describe}"
+                android:textSize="@dimen/item_describe"
+                app:layout_constraintTop_toBottomOf="@+id/video_title"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</layout>

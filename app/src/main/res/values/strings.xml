@@ -34,9 +34,10 @@
     <!-- Strings related to navigation -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Lee</string>
+    <string name="nav_header_subtitle">JefferyLeeg@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_mode">Night Mode</string>
 
     <!-- Strings related to bottomNavigationView -->
     <string name="title_home">Home</string>
@@ -46,10 +47,24 @@
 
     <!-- Strings related to homeFragment -->
     <string name="home_fragment_notes">List of Notes in homeFragment</string>
+    <string name="blog_fragment_notes">List of Notes in blogFragment</string>
+    <string name="recreation_fragment_notes">List of Notes in recreationFragment</string>
+    <string name="message_fragment_notes">List of Notes in messageFragment</string>
+    <string name="video_fragment_notes">List of Notes in videoFragment</string>
+    <string name="music_fragment_notes">List of Notes in musicFragment</string>
+    <string name="picture_fragment_notes">List of Notes in pictureFragment</string>
+    <string name="chats_fragment_notes">List of Notes in chatsFragment</string>
 
     <!-- Strings related to common -->
     <string name="unknown">unknown</string>
 
     <!-- Strings related to description -->
     <string name="login_recycle">Login History</string>
+
+
+    <!-- Strings related to tagFlowLayout -->
+    <string name="gravity_left">left</string>
+    <string name="gravity_center">center</string>
+    <string name="gravity_right">right</string>
+
 </resources>

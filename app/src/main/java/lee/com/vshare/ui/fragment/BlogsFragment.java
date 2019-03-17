@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 import lee.com.vshare.R;
 import lee.com.vshare.databinding.FragmentBlogsBinding;
+import lee.com.vshare.design.taglayout.FlowLayout;
+import lee.com.vshare.design.taglayout.TagAdapter;
 import lee.com.vshare.listener.ItemClickListener;
 import lee.com.vshare.model.ex.Blogs;
 import lee.com.vshare.ui.BaseFragment;
@@ -26,12 +29,14 @@ import lee.com.vshare.viewmodel.BlogsViewModel;
  * Describe:
  * Coder: lee
  */
-public class BlogsFragment extends BaseFragment{
+public class BlogsFragment extends BaseFragment {
 
     public static final String TAG = "BlogsFragment";
 
     private FragmentBlogsBinding mBinding;
     private BlogsAdapter mAdapter;
+
+    private String[] tags = {"Java", "Android", " C ", "C++", "Object C", "Kotlin", "PHP", "Java Script"};
 
     @Nullable
     @Override
@@ -39,8 +44,19 @@ public class BlogsFragment extends BaseFragment{
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_blogs, container, false);
 
+        mBinding.blogsTags.setAdapter(new TagAdapter<String>(tags) {
+            @Override
+            public View getView(FlowLayout parent, int position, String s) {
+                TextView tv = (TextView) inflater.inflate(R.layout.tv_tag, mBinding.blogsTags, false);
+                tv.setText(s);
+                return tv;
+            }
+        });
+        mBinding.blogsTags.setOnSelectListener(selectPosSet -> Log.d(TAG, "choose:" + selectPosSet.toString()));
+
         mAdapter = new BlogsAdapter(itemClickListener);
         mBinding.blogsRecycle.setAdapter(mAdapter);
+        mBinding.blogsRecycle.setHasFixedSize(true);
         return mBinding.getRoot();
     }
 
@@ -56,7 +72,6 @@ public class BlogsFragment extends BaseFragment{
         // Update the list when the data changes
         liveData.observe(this, (blogsList) -> {
             if (blogsList != null) {
-                Log.d("Lee_Blog", "setLoginHistoryList");
                 mAdapter.setBlogsList(blogsList);
             }
             // espresso does not know how to wait for data binding's loop so we execute changes

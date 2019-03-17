@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="lee.com.vshare.util.StringUtils" />
+
+        <variable
+            name="picture"
+            type="lee.com.vshare.model.ex.Picture" />
+
+        <variable
+            name="listener"
+            type="lee.com.vshare.listener.ItemClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->listener.onItemClick(picture)}"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/picture_cover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/picture_describe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{picture.describe}"
+            android:textSize="@dimen/item_describe"/>
+
+    </LinearLayout>
+
+</layout>

@@ -78,15 +78,16 @@ dependencies {
     androidTestImplementation deps.support.design
 
     // RX
-    androidTestImplementation deps.rxjava2
-    androidTestImplementation deps.rx_android
+    implementation deps.rxjava2
+    implementation deps.rx_android
 
     // Custom
     implementation deps.constraint_layout
     implementation deps.glide.runtime
     annotationProcessor deps.glide.compiler
     implementation "com.lee.versioncheck:versioncheck:1.0.5"
-    implementation group: 'com.tbruyelle.rxpermissions', name: 'rxpermissions', version: '0.9.4'
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    implementation 'com.youth.banner:banner:1.4.10'
 
 
 }

@@ -9,11 +9,11 @@
 
         <variable
             name="historyShow"
-            type="Boolean" />
+            type="boolean" />
 
         <variable
             name="cleanShow"
-            type="Boolean" />
+            type="boolean" />
 
         <variable
             name="loginPresenter"

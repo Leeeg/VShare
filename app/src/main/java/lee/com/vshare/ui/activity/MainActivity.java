@@ -1,12 +1,14 @@
 package lee.com.vshare.ui.activity;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,15 +20,20 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import lee.com.vshare.R;
 import lee.com.vshare.ui.BaseActivity;
 import lee.com.vshare.ui.BaseFragment;
+import lee.com.vshare.ui.adapter.NavAdapter;
 import lee.com.vshare.ui.fragment.BlogsFragment;
 import lee.com.vshare.ui.fragment.HomeFragment;
 import lee.com.vshare.ui.fragment.MessageFragment;
 import lee.com.vshare.ui.fragment.RecreationalFragment;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity {
+
+    private static final String TAG = "MainActivity";
 
     private FragmentManager fragmentManager;
 
@@ -39,6 +46,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private DrawerLayout drawer;
     private BottomNavigationView navigation;
+    private ConstraintLayout navHeaderView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
 
@@ -54,6 +62,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         loadFragment(savedInstanceState);
 
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.INTERNET)
+                .subscribe(granted -> {
+                    if (granted) { // Always true pre-M
+                        Log.d(TAG, "permission.BLUETOOTH_PRIVILEGED  agreed");
+                    } else {
+                        Log.e(TAG, "permission.BLUETOOTH_PRIVILEGED  denied");
+                    }
+                });
     }
 
     private void init() {
@@ -62,7 +79,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         NavigationView navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        navHeaderView = (ConstraintLayout) navigationView.getHeaderView(0);
+        navHeaderView.findViewById(R.id.nav_header_icon).setOnClickListener((view) -> {
+            drawer.closeDrawer(GravityCompat.START);
+        });
+
+        RecyclerView menuNav = navHeaderView.findViewById(R.id.nav_header_menu);
+        NavAdapter menuAdapter = new NavAdapter(this);
+        menuNav.setLayoutManager(new LinearLayoutManager(this));
+        menuNav.setAdapter(menuAdapter);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -119,7 +144,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                         if (null == recreationalFragment) {
                             recreationalFragment = RecreationalFragment.newInstance();
                             addFragment(recreationalFragment, TAB_INDEX_RECREATION, RecreationalFragment.TAG);
-                        }else {
+                        } else {
                             showFragment(TAB_INDEX_RECREATION);
                         }
                     }
@@ -130,7 +155,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                         if (null == messageFragment) {
                             messageFragment = MessageFragment.newInstance();
                             addFragment(messageFragment, TAB_INDEX_MESSAGE, MessageFragment.TAG);
-                        }else {
+                        } else {
                             showFragment(TAB_INDEX_MESSAGE);
                         }
                     }
@@ -143,6 +168,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         navigation = findViewById(R.id.navigation);
         navigation.setEnabled(false);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_home);
 
     }
 
@@ -151,32 +177,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            moveTaskToBack(true);
         }
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     /**
@@ -226,5 +228,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         tabIndex = currentIndex;
         navigation.setEnabled(true);
     }
+
 
 }

@@ -35,7 +35,7 @@
                 android:maxLines="2"
                 android:text="@{blogs.blogTitle}"
                 android:textColor="@color/blackTitle"
-                android:textSize="@dimen/item_blog_title"
+                android:textSize="@dimen/item_title"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/imageView0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@{blogs.describe}"
-                android:textSize="@dimen/item_blog_describe"
+                android:textSize="@dimen/item_describe"
                 app:layout_constraintEnd_toStartOf="@+id/imageView0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView1" />
@@ -118,7 +118,7 @@
                 android:layout_marginTop="@dimen/dp_3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView1"
-                app:srcCompat="@drawable/ic_blog_browse_16" />
+                app:srcCompat="@drawable/ic_browse_16" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -128,7 +128,7 @@
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
                 android:text="@{``+blogs.blogReads}"
-                android:textSize="@dimen/item_blog_action"
+                android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toTopOf="@+id/imageView4" />
@@ -141,7 +141,7 @@
                 android:layout_marginLeft="@dimen/dp_6"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
-                app:srcCompat="@drawable/ic_blog_tap_16" />
+                app:srcCompat="@drawable/ic_tap_16" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -151,7 +151,7 @@
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
                 android:text="@{``+blogs.blogLikes}"
-                android:textSize="@dimen/item_blog_action"
+                android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toTopOf="@+id/imageView4" />
@@ -164,7 +164,7 @@
                 android:layout_marginLeft="@dimen/dp_6"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/textView5"
-                app:srcCompat="@drawable/ic_blog_share_16" />
+                app:srcCompat="@drawable/ic_share_16" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -174,7 +174,7 @@
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
                 android:text="@{``+blogs.share}"
-                android:textSize="@dimen/item_blog_action"
+                android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toTopOf="@+id/imageView4" />
@@ -187,7 +187,7 @@
                 android:layout_marginLeft="@dimen/dp_8"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/textView6"
-                app:srcCompat="@drawable/ic_blog_author_16" />
+                app:srcCompat="@drawable/ic_author_16" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -197,7 +197,7 @@
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
                 android:text="@{blogs.blogAuthorName ?? `unknown`}"
-                android:textSize="@dimen/item_blog_action"
+                android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/imageView7"
                 app:layout_constraintTop_toTopOf="@+id/imageView4" />
@@ -210,7 +210,7 @@
                 android:layout_marginRight="@dimen/dp_4"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintEnd_toStartOf="@+id/textView8"
-                app:srcCompat="@drawable/ic_blog_time_16" />
+                app:srcCompat="@drawable/ic_time_16" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -220,7 +220,7 @@
                 android:layout_marginLeft="@dimen/dp_4"
                 android:gravity="center"
                 android:text="@{StringUtils.dataToString(blogs.blogModifiedTime)}"
-                android:textSize="@dimen/item_blog_action"
+                android:textSize="@dimen/item_action"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageView4" />
