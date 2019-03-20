@@ -4,6 +4,7 @@ import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -46,7 +47,7 @@ public class MainActivity extends BaseActivity {
 
     private DrawerLayout drawer;
     private BottomNavigationView navigation;
-    private ConstraintLayout navHeaderView;
+    private LinearLayout navHeaderView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
 
@@ -79,15 +80,15 @@ public class MainActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         NavigationView navigationView = findViewById(R.id.navigation_view);
-        navHeaderView = (ConstraintLayout) navigationView.getHeaderView(0);
+        navHeaderView = (LinearLayout) navigationView.getHeaderView(0);
         navHeaderView.findViewById(R.id.nav_header_icon).setOnClickListener((view) -> {
             drawer.closeDrawer(GravityCompat.START);
         });
 
-        RecyclerView menuNav = navHeaderView.findViewById(R.id.nav_header_menu);
-        NavAdapter menuAdapter = new NavAdapter(this);
-        menuNav.setLayoutManager(new LinearLayoutManager(this));
-        menuNav.setAdapter(menuAdapter);
+//        RecyclerView menuNav = navHeaderView.findViewById(R.id.nav_header_menu);
+//        NavAdapter menuAdapter = new NavAdapter(this);
+//        menuNav.setLayoutManager(new LinearLayoutManager(this));
+//        menuNav.setAdapter(menuAdapter);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);

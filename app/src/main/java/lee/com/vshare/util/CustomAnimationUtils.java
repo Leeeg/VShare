@@ -8,8 +8,8 @@ import android.view.animation.TranslateAnimation;
  * Describe:
  * Coder: lee
  */
-public class CustomAnimationUtil {
-    private static final String TAG = CustomAnimationUtil.class.getSimpleName();
+public class CustomAnimationUtils {
+    private static final String TAG = CustomAnimationUtils.class.getSimpleName();
 
     /**
      * 从控件的底部移动到控件所在位置
