@@ -34,7 +34,7 @@ import lee.com.vshare.ui.fragment.RecreationalFragment;
 
 public class MainActivity extends BaseActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "Lee_MainActivity";
 
     private FragmentManager fragmentManager;
 
@@ -63,15 +63,6 @@ public class MainActivity extends BaseActivity {
 
         loadFragment(savedInstanceState);
 
-        RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.request(Manifest.permission.INTERNET)
-                .subscribe(granted -> {
-                    if (granted) { // Always true pre-M
-                        Log.d(TAG, "permission.BLUETOOTH_PRIVILEGED  agreed");
-                    } else {
-                        Log.e(TAG, "permission.BLUETOOTH_PRIVILEGED  denied");
-                    }
-                });
     }
 
     private void init() {

@@ -59,6 +59,7 @@ dependencies {
     annotationProcessor deps.lifecycle.compiler
     implementation deps.room.runtime
     annotationProcessor deps.room.compiler
+    implementation deps.room.rxjava2
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation deps.atsl.runner
@@ -80,14 +81,25 @@ dependencies {
     // RX
     implementation deps.rxjava2
     implementation deps.rx_android
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+
+    // Retrofit
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.mock
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'//配合Rxjava 使用
 
     // Custom
     implementation deps.constraint_layout
     implementation deps.glide.runtime
     annotationProcessor deps.glide.compiler
     implementation "com.lee.versioncheck:versioncheck:1.0.5"
-    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'com.google.code.gson:gson:2.6.2'
+
+    // 注：protobuf-java的版本 一定要和 安装protocobuffer的版本 一致
+    implementation 'com.google.protobuf:protobuf-java:2.6.1'
+
 
 
 }

@@ -1,8 +1,11 @@
 package lee.com.vshare.ui.activity;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +19,7 @@ import lee.com.vshare.ui.fragment.RegisterFragment;
 import lee.com.vshare.ui.fragment.ResetPasswordFragment;
 import lee.com.vshare.ui.fragment.RetrieveFragment;
 import lee.com.vshare.ui.fragment.SignUpFragment;
+import lee.com.vshare.util.PropertyUtils;
 
 /**
  * CreateDate：18-12-28 on 下午7:26
@@ -23,6 +27,8 @@ import lee.com.vshare.ui.fragment.SignUpFragment;
  * Coder: lee
  */
 public class LoginActivity extends BaseActivity {
+
+    private static final String TAG = "Lee_LoginActivity";
 
     public final static int TITLE_SIGNIN = 0;
     public final static int TITLE_REGISTER = 1;
@@ -43,6 +49,16 @@ public class LoginActivity extends BaseActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fragmentManager = getSupportFragmentManager();
+
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.INTERNET,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(granted -> {
+                    if (granted) { // Always true pre-M
+                    } else {
+                    }
+                });
 
         loadFragment(savedInstanceState);
     }
