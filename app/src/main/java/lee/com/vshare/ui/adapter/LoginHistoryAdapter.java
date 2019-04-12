@@ -29,7 +29,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import lee.com.vshare.R;
 import lee.com.vshare.databinding.ItemLoginHistoryBinding;
-import lee.com.vshare.db.entity.ex.LoginHistory;
+import lee.com.vshare.model.db.entity.ex.LoginHistory;
 import lee.com.vshare.listener.ItemClickListener;
 
 public class LoginHistoryAdapter extends RecyclerView.Adapter<LoginHistoryAdapter.LoginHistoryViewHolder> {

@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
 import lee.com.vshare.R;
-import lee.com.vshare.glide.GlideApp;
+import lee.com.vshare.config.GlideApp;
 
 /**
  * Created by Lee on 2018/12/31.

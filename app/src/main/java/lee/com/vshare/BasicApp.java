@@ -17,13 +17,11 @@
 package lee.com.vshare;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
 
-import lee.com.vshare.db.AppDatabase;
-import lee.com.vshare.test.system.Test;
-import lee.com.vshare.util.AudioConfig;
-import lee.com.vshare.util.PropertyUtils;
+import chat.ctyon.com.netlibrary.utils.ApiConfig;
+import lee.com.vshare.model.db.AppDatabase;
+
+import static lee.com.vshare.model.network.NetConfig.BASE_URL;
 
 
 /**
@@ -41,6 +39,18 @@ public class BasicApp extends Application {
         basicApp = this;
         mAppExecutors = new AppExecutors();
 
+        ApiConfig build = new ApiConfig.Builder()
+                .setBaseUrl(BASE_URL)//BaseUrl，这个地方加入后项目中默认使用该url
+                .setInvalidateToken(0)//Token失效码
+                .setSucceedCode(0)//成功返回码  NBA的测试返回成功code为0  上传图片返回code为200 由于是不同接口 请大家注意
+                .setFilter("com.mp5a5.quit.broadcastFilter")//失效广播Filter设置
+                //.setDefaultTimeout(2000)//响应时间，可以不设置，默认为2000毫秒
+//                .setHeads(headMap)//动态添加的header，也可以在其他地方通过ApiConfig.setHeads()设置
+                //.setOpenHttps(true)//开启HTTPS验证
+                //.setSslSocketConfigure(sslSocketConfigure)//HTTPS认证配置
+                .build();
+
+        build.init(this);
     }
 
     public AppDatabase getDatabase() {

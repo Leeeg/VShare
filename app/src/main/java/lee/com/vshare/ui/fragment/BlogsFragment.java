@@ -22,7 +22,7 @@ import lee.com.vshare.listener.ItemClickListener;
 import lee.com.vshare.model.ex.Blogs;
 import lee.com.vshare.ui.BaseFragment;
 import lee.com.vshare.ui.adapter.BlogsAdapter;
-import lee.com.vshare.viewmodel.BlogsViewModel;
+import lee.com.vshare.viewmodel.BlogViewModel;
 
 /**
  * CreateDate：18-12-29 on 下午2:59
@@ -63,16 +63,16 @@ public class BlogsFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        final BlogsViewModel viewModel = ViewModelProviders.of(this).get(BlogsViewModel.class);
+        final BlogViewModel viewModel = ViewModelProviders.of(this).get(BlogViewModel.class);
 
-        subscribeUi(viewModel.getBlogs());
+        subscribeUi(viewModel.getBlog());
     }
 
     private void subscribeUi(LiveData<List<Blogs>> liveData) {
         // Update the list when the data changes
-        liveData.observe(this, (blogsList) -> {
-            if (blogsList != null) {
-                mAdapter.setBlogsList(blogsList);
+        liveData.observe(this, (blogList) -> {
+            if (blogList != null) {
+                mAdapter.setBlogsList(blogList);
             }
             // espresso does not know how to wait for data binding's loop so we execute changes
             // sync.

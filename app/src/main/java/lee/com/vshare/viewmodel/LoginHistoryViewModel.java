@@ -4,13 +4,12 @@ import android.app.Application;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import lee.com.vshare.BasicApp;
 import lee.com.vshare.DataRepository;
-import lee.com.vshare.db.entity.LoginHistoryEntity;
+import lee.com.vshare.model.db.entity.LoginHistoryEntity;
 
 /**
  * CreateDate：19-1-11 on 下午4:39

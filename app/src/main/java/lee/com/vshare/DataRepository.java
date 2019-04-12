@@ -3,10 +3,8 @@ package lee.com.vshare;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import lee.com.vshare.db.AppDatabase;
-import lee.com.vshare.db.entity.LoginHistoryEntity;
-import lee.com.vshare.db.entity.ProductEntity;
+import lee.com.vshare.model.db.AppDatabase;
+import lee.com.vshare.model.db.entity.LoginHistoryEntity;
 
 /**
  * Repository handling the work with products and comments.

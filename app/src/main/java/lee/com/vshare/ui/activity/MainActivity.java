@@ -1,18 +1,16 @@
 package lee.com.vshare.ui.activity;
 
-import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -21,12 +19,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import lee.com.vshare.R;
 import lee.com.vshare.ui.BaseActivity;
 import lee.com.vshare.ui.BaseFragment;
-import lee.com.vshare.ui.adapter.NavAdapter;
 import lee.com.vshare.ui.fragment.BlogsFragment;
 import lee.com.vshare.ui.fragment.HomeFragment;
 import lee.com.vshare.ui.fragment.MessageFragment;
@@ -57,11 +54,23 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.d(TAG, "onCreate: ");
+
         init();
 
         fragmentManager = getSupportFragmentManager();
 
-        loadFragment(savedInstanceState);
+
+        Log.d(TAG, "onCreate: Observable.timer before");
+
+        Observable.timer(5, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    Log.d(TAG, "subscribe: ");
+                    loadFragment(savedInstanceState);
+                });
+
+        Log.d(TAG, "onCreate: Observable.timer end");
 
     }
 

@@ -6,7 +6,7 @@
 
         <variable
             name="loginHistory"
-            type="lee.com.vshare.db.entity.ex.LoginHistory" />
+            type="lee.com.vshare.model.db.entity.ex.LoginHistory" />
 
         <variable
             name="listener"

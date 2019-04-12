@@ -38,11 +38,11 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ChatsViewHol
     List<? extends Chats> newChatsList;
 
     @Nullable
-    private final ItemClickListener ChatsItemClickListener;
+    private final ItemClickListener chatsItemClickListener;
 
     public ChatsAdapter(@Nullable ItemClickListener itemClickListener) {
         Log.d("Lee_ChatsAdapter", "ChatsAdapter");
-        ChatsItemClickListener = itemClickListener;
+        chatsItemClickListener = itemClickListener;
         setHasStableIds(true);
     }
 
@@ -90,7 +90,7 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ChatsViewHol
     public ChatsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.d("Lee_ChatsAdapter", "onCreateViewHolder");
         ItemChatsBinding binding= DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_chats, parent, false);
-        binding.setListener(ChatsItemClickListener);
+        binding.setListener(chatsItemClickListener);
         return new ChatsViewHolder(binding);
     }
 

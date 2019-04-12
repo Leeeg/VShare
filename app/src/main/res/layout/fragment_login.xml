@@ -21,7 +21,7 @@
 
         <variable
             name="loginBean"
-            type="lee.com.vshare.bean.LoginBean" />
+            type="lee.com.vshare.binding.bean.LoginBean" />
     </data>
 
     <!--<ScrollView-->

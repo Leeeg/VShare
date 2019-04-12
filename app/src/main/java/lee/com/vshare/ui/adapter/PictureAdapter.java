@@ -34,7 +34,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import lee.com.vshare.R;
 import lee.com.vshare.databinding.ItemPictureBinding;
-import lee.com.vshare.glide.GlideApp;
 import lee.com.vshare.listener.ItemClickListener;
 import lee.com.vshare.model.ex.Picture;
 
