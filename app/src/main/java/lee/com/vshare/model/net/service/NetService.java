@@ -1,16 +1,15 @@
-package lee.com.vshare.model.network.service;
+package lee.com.vshare.model.net.service;
 
-import android.os.Build;
 import android.util.ArrayMap;
-
 
 import java.util.Map;
 
-import androidx.annotation.RequiresApi;
 import chat.ctyon.com.netlibrary.use.RetrofitFactory;
 import io.reactivex.Observable;
-import lee.com.vshare.model.network.api.Api;
-import lee.com.vshare.model.network.entity.BlogEntity;
+import lee.com.vshare.model.net.api.Api;
+import lee.com.vshare.model.net.entity.BlogEntity;
+
+import static lee.com.vshare.model.net.AppKey.KEY_WEATHR;
 
 /**
  * @describe
@@ -31,11 +30,14 @@ public class NetService {
         private static final NetService S_INSTANCE = new NetService();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public Observable<BlogEntity> getNBAInfo(String key) {
+    public Observable<BlogEntity> getWeather(String cityName) {
         Map<String, Object> map = new ArrayMap<>();
-        map.put("key", key);
-        return api.getBlog(map);
+        map.put("cityname", cityName);
+        map.put("key", KEY_WEATHR);
+        return api.getWeather(map);
     }
 
+    public Observable<BlogEntity> getBlog() {
+        return api.getBlog();
+    }
 }

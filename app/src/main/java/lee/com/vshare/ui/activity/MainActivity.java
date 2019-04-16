@@ -60,17 +60,7 @@ public class MainActivity extends BaseActivity {
 
         fragmentManager = getSupportFragmentManager();
 
-
-        Log.d(TAG, "onCreate: Observable.timer before");
-
-        Observable.timer(5, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
-                    Log.d(TAG, "subscribe: ");
-                    loadFragment(savedInstanceState);
-                });
-
-        Log.d(TAG, "onCreate: Observable.timer end");
+        loadFragment(savedInstanceState);
 
     }
 

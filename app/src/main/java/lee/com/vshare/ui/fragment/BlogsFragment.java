@@ -36,6 +36,8 @@ public class BlogsFragment extends BaseFragment {
     private FragmentBlogsBinding mBinding;
     private BlogsAdapter mAdapter;
 
+    private BlogViewModel viewModel;
+
     private String[] tags = {"Java", "Android", " C ", "C++", "Object C", "Kotlin", "PHP", "Java Script"};
 
     @Nullable
@@ -63,7 +65,7 @@ public class BlogsFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        final BlogViewModel viewModel = ViewModelProviders.of(this).get(BlogViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(BlogViewModel.class);
 
         subscribeUi(viewModel.getBlog());
     }

@@ -21,7 +21,8 @@ import android.app.Application;
 import chat.ctyon.com.netlibrary.utils.ApiConfig;
 import lee.com.vshare.model.db.AppDatabase;
 
-import static lee.com.vshare.model.network.NetConfig.BASE_URL;
+import static lee.com.vshare.model.net.NetConfig.BASE_URL;
+import static lee.com.vshare.model.net.NetConfig.BASE_URL_TEST;
 
 
 /**
@@ -40,7 +41,7 @@ public class BasicApp extends Application {
         mAppExecutors = new AppExecutors();
 
         ApiConfig build = new ApiConfig.Builder()
-                .setBaseUrl(BASE_URL)//BaseUrl，这个地方加入后项目中默认使用该url
+                .setBaseUrl(BASE_URL_TEST)//BaseUrl，这个地方加入后项目中默认使用该url
                 .setInvalidateToken(0)//Token失效码
                 .setSucceedCode(0)//成功返回码  NBA的测试返回成功code为0  上传图片返回code为200 由于是不同接口 请大家注意
                 .setFilter("com.mp5a5.quit.broadcastFilter")//失效广播Filter设置

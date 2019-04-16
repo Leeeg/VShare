@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -13,16 +12,31 @@
             type="int" />
 
         <variable
-            name="Hot"
+            name="text"
+            type="String" />
+
+        <variable
+            name="home"
             type="lee.com.vshare.model.ex.Home" />
+
+        <variable
+            name="homePresenter"
+            type="lee.com.vshare.ui.presenter.HomePresenter" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/textGreen"
+            android:minHeight="@dimen/dp_40"
+            android:onClick="@{()->homePresenter.onTextClick()}"
+            android:text="@{text??``}" />
 
+    </ScrollView>
 
-    </LinearLayout>
 </layout>
