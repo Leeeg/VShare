@@ -17,11 +17,11 @@
 
         <variable
             name="home"
-            type="lee.com.vshare.model.ex.Home" />
+            type="com.lee.vshare.model.ex.Home" />
 
         <variable
             name="homePresenter"
-            type="lee.com.vshare.ui.presenter.HomePresenter" />
+            type="com.lee.vshare.ui.presenter.HomePresenter" />
     </data>
 
     <ScrollView

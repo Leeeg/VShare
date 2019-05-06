@@ -5,7 +5,7 @@ android {
     buildToolsVersion build_versions.build_tools
 
     defaultConfig {
-        applicationId 'lee.com.vshare'
+        applicationId 'com.lee.vshare'
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
@@ -74,14 +74,14 @@ dependencies {
     androidTestImplementation deps.support.app_compat
     androidTestImplementation deps.support.design
     // RX
-//    implementation deps.rxjava2
-//    implementation deps.rx_android
+    //    implementation deps.rxjava2
+    //    implementation deps.rx_android
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     // Retrofit
-//    implementation deps.retrofit.runtime
-//    implementation deps.retrofit.gson
-//    implementation deps.retrofit.mock
-//    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    //    implementation deps.retrofit.runtime
+    //    implementation deps.retrofit.gson
+    //    implementation deps.retrofit.mock
+    //    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     //配合Rxjava 使用
     // Custom
     implementation deps.constraint_layout
@@ -93,4 +93,5 @@ dependencies {
     // 注：protobuf-java的版本 一定要和 安装protocobuffer的版本 一致
     implementation 'com.google.protobuf:protobuf-java:2.6.1'
     implementation project(':netlibrary')
+    implementation project(':audiotalkie')
 }

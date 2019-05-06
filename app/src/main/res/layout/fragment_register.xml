@@ -5,7 +5,7 @@
 
         <variable
             name="registerPresenter"
-            type="lee.com.vshare.ui.presenter.RegisterPresenter"/>
+            type="com.lee.vshare.ui.presenter.RegisterPresenter"/>
 
     </data>
 

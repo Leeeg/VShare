@@ -17,11 +17,11 @@
 
         <variable
             name="loginPresenter"
-            type="lee.com.vshare.ui.presenter.LoginPresenter" />
+            type="com.lee.vshare.ui.presenter.LoginPresenter" />
 
         <variable
             name="loginBean"
-            type="lee.com.vshare.binding.bean.LoginBean" />
+            type="com.lee.vshare.binding.bean.LoginBean" />
     </data>
 
     <!--<ScrollView-->

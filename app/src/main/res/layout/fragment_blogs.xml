@@ -16,7 +16,7 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
-            <lee.com.vshare.design.taglayout.TagFlowLayout
+            <com.lee.vshare.design.taglayout.TagFlowLayout
                 android:id="@+id/blogs_tags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

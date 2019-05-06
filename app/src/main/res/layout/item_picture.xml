@@ -4,15 +4,15 @@
 
     <data>
 
-        <import type="lee.com.vshare.util.StringUtils" />
+        <import type="com.lee.vshare.util.StringUtils" />
 
         <variable
             name="picture"
-            type="lee.com.vshare.model.ex.Picture" />
+            type="com.lee.vshare.model.ex.Picture" />
 
         <variable
             name="listener"
-            type="lee.com.vshare.listener.ItemClickListener" />
+            type="com.lee.vshare.listener.ItemClickListener" />
     </data>
 
     <LinearLayout

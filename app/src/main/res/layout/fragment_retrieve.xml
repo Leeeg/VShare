@@ -5,7 +5,7 @@
 
         <variable
             name="retrievePresenter"
-            type="lee.com.vshare.ui.presenter.RetrievePresenter"/>
+            type="com.lee.vshare.ui.presenter.RetrievePresenter"/>
 
     </data>
 

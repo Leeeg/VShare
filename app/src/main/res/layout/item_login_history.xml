@@ -6,11 +6,11 @@
 
         <variable
             name="loginHistory"
-            type="lee.com.vshare.model.db.entity.ex.LoginHistory" />
+            type="com.lee.vshare.model.db.entity.ex.LoginHistory" />
 
         <variable
             name="listener"
-            type="lee.com.vshare.listener.ItemClickListener" />
+            type="com.lee.vshare.listener.ItemClickListener" />
 
     </data>
 

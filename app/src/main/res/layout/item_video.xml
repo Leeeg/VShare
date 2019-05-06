@@ -4,15 +4,15 @@
 
     <data>
 
-        <import type="lee.com.vshare.util.StringUtils" />
+        <import type="com.lee.vshare.util.StringUtils" />
 
         <variable
             name="video"
-            type="lee.com.vshare.model.ex.Video" />
+            type="com.lee.vshare.model.ex.Video" />
 
         <variable
             name="listener"
-            type="lee.com.vshare.listener.ItemClickListener" />
+            type="com.lee.vshare.listener.ItemClickListener" />
     </data>
 
     <FrameLayout
