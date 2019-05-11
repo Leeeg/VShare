@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lee.vshare.R;
+import com.lee.vshare.model.net.entity.BlogEntity;
+import com.lee.vshare.ui.BaseFragment;
+import com.lee.vshare.ui.presenter.HomePresenter;
 import com.lee.vshare.viewmodel.HomeViewModel;
 
 import androidx.annotation.NonNull;
@@ -14,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
+import lee.vshare.netty.client.NettyClientApp;
 
 import com.lee.vshare.databinding.FragmentHomeBinding;
 
@@ -23,7 +27,7 @@ import com.lee.vshare.databinding.FragmentHomeBinding;
  * Describe:
  * Coder: lee
  */
-public class HomeFragment extends com.lee.vshare.ui.BaseFragment {
+public class HomeFragment extends BaseFragment {
 
     public static final String TAG = "HomeFragment";
 
@@ -51,7 +55,7 @@ public class HomeFragment extends com.lee.vshare.ui.BaseFragment {
         subscribeUi(viewModel.getBlogLiveData());
     }
 
-    private void subscribeUi(LiveData<com.lee.vshare.model.net.entity.BlogEntity> liveData) {
+    private void subscribeUi(LiveData<BlogEntity> liveData) {
         liveData.observe(this, blogEntity -> {
             Log.d(TAG, "code = " + blogEntity.code);
 //            mBinding.setText(blogEntity.getResult().getToday().toString());
@@ -65,11 +69,13 @@ public class HomeFragment extends com.lee.vshare.ui.BaseFragment {
         return fragment;
     }
 
-    private final com.lee.vshare.ui.presenter.HomePresenter presenter = new com.lee.vshare.ui.presenter.HomePresenter() {
+    private final HomePresenter presenter = new HomePresenter() {
         @Override
         public void onTextClick() {
-            viewModel.getWeather("深圳");
-            viewModel.getBlog();
+            Log.d(TAG, "onTextClick");
+//            viewModel.getWeather("深圳");
+//            viewModel.getBlog();
+            new NettyClientApp();
         }
     };
 

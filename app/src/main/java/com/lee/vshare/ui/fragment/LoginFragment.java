@@ -1,16 +1,24 @@
 package com.lee.vshare.ui.fragment;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.lee.vshare.R;
+import com.lee.vshare.binding.bean.LoginBean;
 import com.lee.vshare.databinding.FragmentLoginBinding;
+import com.lee.vshare.listener.ItemClickListener;
+import com.lee.vshare.model.db.entity.LoginHistoryEntity;
+import com.lee.vshare.model.db.entity.ex.LoginHistory;
+import com.lee.vshare.ui.BaseFragment;
 import com.lee.vshare.ui.activity.LoginActivity;
 import com.lee.vshare.ui.activity.MainActivity;
+import com.lee.vshare.ui.presenter.LoginPresenter;
 import com.lee.vshare.viewmodel.LoginHistoryViewModel;
 
 import java.util.List;
@@ -27,7 +35,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
  * Describe:
  * Coder: lee
  */
-public class LoginFragment extends com.lee.vshare.ui.BaseFragment {
+public class LoginFragment extends BaseFragment {
 
     public static final String TAG = "LoginFragment";
 
@@ -50,7 +58,7 @@ public class LoginFragment extends com.lee.vshare.ui.BaseFragment {
 
         mBinding.setHistoryShow(false);
         mBinding.setCleanShow(false);
-        mBinding.setLoginBean(new com.lee.vshare.binding.bean.LoginBean());
+        mBinding.setLoginBean(new LoginBean());
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -81,7 +89,7 @@ public class LoginFragment extends com.lee.vshare.ui.BaseFragment {
         subscribeUi(viewModel.getmObservableHistories());
     }
 
-    private void subscribeUi(LiveData<List<com.lee.vshare.model.db.entity.LoginHistoryEntity>> liveData) {
+    private void subscribeUi(LiveData<List<LoginHistoryEntity>> liveData) {
         // Update the list when the data changes
         liveData.observe(this, (loginHistories) -> {
             if (loginHistories != null) {
@@ -94,7 +102,7 @@ public class LoginFragment extends com.lee.vshare.ui.BaseFragment {
         });
     }
 
-    private final com.lee.vshare.ui.presenter.LoginPresenter presenter = new com.lee.vshare.ui.presenter.LoginPresenter() {
+    private final LoginPresenter presenter = new LoginPresenter() {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
             Log.d("Lee_Login", "onFocusChange : hasFocus = " + hasFocus);
@@ -121,6 +129,7 @@ public class LoginFragment extends com.lee.vshare.ui.BaseFragment {
 
             ((LoginActivity) getActivity()).startActivity(new Intent((LoginActivity) getActivity(), MainActivity.class));
             ((LoginActivity) getActivity()).finish();
+
         }
 
         @Override
@@ -145,7 +154,7 @@ public class LoginFragment extends com.lee.vshare.ui.BaseFragment {
         }
     };
 
-    private final com.lee.vshare.listener.ItemClickListener<com.lee.vshare.model.db.entity.ex.LoginHistory> itemClickListener = (history) -> {
+    private final ItemClickListener<LoginHistory> itemClickListener = (history) -> {
         Log.d("Lee_Login", "userId = " + history.getUserId());
     };
 
