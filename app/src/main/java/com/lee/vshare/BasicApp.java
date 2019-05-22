@@ -17,8 +17,10 @@
 package com.lee.vshare;
 
 import android.app.Application;
+import android.net.TrafficStats;
 
 import com.lee.vshare.model.db.AppDatabase;
+import com.lee.vshare.test.NetObserver;
 
 import lee.com.netlibrary.utils.ApiConfig;
 
@@ -51,7 +53,12 @@ public class BasicApp extends Application {
                 //.setSslSocketConfigure(sslSocketConfigure)//HTTPS认证配置
                 .build();
 
+        TrafficStats.getTotalRxBytes();
         build.init(this);
+
+        String path = "/proc/net/xt_qtaguid/stats";
+        NetObserver netObserver = new NetObserver(path);
+        netObserver.startWatching();
     }
 
     public AppDatabase getDatabase() {

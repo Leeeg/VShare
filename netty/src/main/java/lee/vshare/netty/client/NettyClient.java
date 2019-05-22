@@ -23,8 +23,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  */
 public class NettyClient {
 
-    private String host = "192.168.0.21"; // ip地址
-    private int port = 9876; // 端口
+    private String host = "120.79.90.249"; // ip地址
+    private int port = 7788; // 端口
     // 通过nio方式来接收连接和处理连接
     private EventLoopGroup group = new NioEventLoopGroup();
 
@@ -38,6 +38,7 @@ public class NettyClient {
     public void run() {
         nettyClientFilter = new NettyClientFilter();
         doConnect(new Bootstrap(), group);
+
     }
 
     /**
