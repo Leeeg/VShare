@@ -23,8 +23,9 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  */
 public class NettyClient {
 
-    private String host = "120.79.90.249"; // ip地址
-    private int port = 7788; // 端口
+    private String host = "192.168.0.21"; // ip地址
+//    private static final int port = 9090; // 端口
+    private static final int port = 9876;
     // 通过nio方式来接收连接和处理连接
     private EventLoopGroup group = new NioEventLoopGroup();
 
@@ -47,9 +48,9 @@ public class NettyClient {
     public void doConnect(Bootstrap bootstrap, EventLoopGroup eventLoopGroup) {
 
         try {
-        new Bootstrap()
+            bootstrap
                 .channel(NioSocketChannel.class)
-                .group(group)
+                .group(eventLoopGroup)
                 .option(ChannelOption.TCP_NODELAY, true) // 不延迟，直接发送
                 .option(ChannelOption.SO_KEEPALIVE, true) // 保持长连接状态
                 .handler(nettyClientFilter)
@@ -60,7 +61,7 @@ public class NettyClient {
                         // 连接成功
                         socketChannel = (SocketChannel) future.channel();
                     } else {
-                        System.out.println("客户端连接失败");
+                        System.out.println("客户端连接失败 : " + future.toString());
                         // 这里一定要关闭，不然一直重试会引发OOM
                         future.channel().close();
                         group.shutdownGracefully();
@@ -69,29 +70,5 @@ public class NettyClient {
         } catch (Exception e) {
             System.out.println("客户端连接失败!" + e.getMessage());
         }
-
-//        try {
-//            if (bootstrap != null) {
-//                bootstrap.group(eventLoopGroup);
-//                bootstrap.channel(NioSocketChannel.class);
-//                bootstrap.option(ChannelOption.SO_KEEPALIVE, true);
-//                bootstrap.handler(nettyClientFilter);
-//                bootstrap.remoteAddress(host, port);
-//                bootstrap.connect().addListener((ChannelFutureListener) future -> {
-//                    if (future.isSuccess()) {
-//                        // 连接成功
-//                        socketChannel = (SocketChannel) future.channel();
-//                    } else {
-//                        // 这里一定要关闭，不然一直重试会引发OOM
-//                        future.channel().close();
-//                        group.shutdownGracefully();
-//                    }
-//                });
-//                System.out.println("Netty客户端启动成功!");
-//            }
-//        } catch (Exception e) {
-//            System.out.println("客户端连接失败!" + e.getMessage());
-//        }
-
     }
 }

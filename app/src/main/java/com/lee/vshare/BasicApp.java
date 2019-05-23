@@ -42,6 +42,7 @@ public class BasicApp extends Application {
         basicApp = this;
         mAppExecutors = new AppExecutors();
 
+        //初始化网络请求模块
         ApiConfig build = new ApiConfig.Builder()
                 .setBaseUrl(BASE_URL_TEST)//BaseUrl，这个地方加入后项目中默认使用该url
                 .setInvalidateToken(0)//Token失效码
@@ -52,13 +53,7 @@ public class BasicApp extends Application {
                 //.setOpenHttps(true)//开启HTTPS验证
                 //.setSslSocketConfigure(sslSocketConfigure)//HTTPS认证配置
                 .build();
-
-        TrafficStats.getTotalRxBytes();
         build.init(this);
-
-        String path = "/proc/net/xt_qtaguid/stats";
-        NetObserver netObserver = new NetObserver(path);
-        netObserver.startWatching();
     }
 
     public AppDatabase getDatabase() {
