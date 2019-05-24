@@ -3,17 +3,18 @@ package lee.vshare.netty.client;
 
 import android.util.Log;
 
-import java.util.Date;
-
-import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.EventLoop;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.ReferenceCountUtil;
-import lee.vshare.netty.protobuf.UserInfo;
+import lee.vshare.netty.protobuf.NettyMessage;
+import lee.vshare.netty.task.NettyTask;
+
+import static lee.vshare.netty.contain.NMsgContainer.MSG_USER_BUSINESS;
+import static lee.vshare.netty.contain.NMsgContainer.MSG_USER_HEART_BEAT;
+import static lee.vshare.netty.contain.NMsgContainer.MSG_USER_TIME_OUT;
 
 /**
  * @Title: NettyClientHandler
@@ -24,34 +25,79 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
     private static final String TAG = "NettyClientHandler";
 
+    /**
+     * 表示服务端与客户端连接建立
+     *
+     * @param ctx
+     * @throws Exception
+     */
+    @Override
+    public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
+        Log.d(TAG, "handlerAdded");
+        /**
+         * 调用channelGroup的writeAndFlush相当于channelGroup中的每个channel都writeAndFlush
+         * 先去广播，再将自己加入到channelGroup中
+         */
+        super.handlerAdded(ctx);
+    }
+
+    /**
+     * 有连接断开
+     *
+     * @param ctx
+     * @throws Exception
+     */
+    @Override
+    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+        Log.d(TAG, "handlerRemoved");
+        super.handlerRemoved(ctx);
+    }
+
+    /**
+     * 连接处于活动状态
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        Log.d(TAG, "channelActive");
         super.channelActive(ctx);
-        Log.d(TAG, "建立连接");
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        Log.d(TAG, "channelInactive");
         super.channelInactive(ctx);
-        Log.d(TAG, "断开连接");
     }
 
     /**
-     * 心跳请求处理
+     * 超时处理
      */
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
-        Log.d(TAG, "没有交互  检测心跳");
         Channel channel = ctx.channel();
+        Log.d(TAG, "userEventTriggered");
         if (obj instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) obj;
-            if (IdleState.WRITER_IDLE.equals(event.state())) { // 如果写通道处于空闲状态,就发送心跳命令
-                UserInfo.UserMsg.Builder userState = UserInfo.UserMsg.newBuilder().setState(2);
-                ctx.channel().writeAndFlush(userState);
+            if (IdleState.WRITER_IDLE.equals(event.state())) { // 如果读通道处于空闲状态，说明没有接收到心跳命令
                 Log.d(TAG, "ping >>> ");
-//                channel.writeAndFlush("ping.....");
+                NettyMessage.NettyMsg pingNettyMsg = NettyMessage.NettyMsg.newBuilder()
+                        .setMsgType(MSG_USER_HEART_BEAT)
+                        .build();
+
+                NettyTask.getInstance().sendNettyMsg(pingNettyMsg);
+
+                channel.close();
             }
         }
+        super.channelInactive(ctx);
+    }
+
+    /**
+     * 异常处理
+     */
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        Log.d(TAG, "exceptionCaught : 出现异常 " + cause);
+        super.exceptionCaught(ctx, cause);
     }
 
     /**
@@ -59,26 +105,25 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        Log.d(TAG, "收到消息");
-        // 如果不是protobuf类型的数据
-        if (!(msg instanceof UserInfo.UserMsg)) {
-            Log.d(TAG, "未知类型消息 ： " + msg);
-            return;
-        }
+        Channel channel = ctx.channel();
+        Log.d(TAG, "收到 " + channel.remoteAddress() + "发来的消息");
         try {
-            // 得到protobuf的数据
-            UserInfo.UserMsg userMsg = (UserInfo.UserMsg) msg;
-            // 进行相应的业务处理。。。
-            // 这里就从简了，只是打印而已
-            System.out.println(
-                    "客户端接受到的用户信息。编号:" + userMsg.getId() + ",姓名:" + userMsg.getName() + ",年龄:" + userMsg.getAge());
-
-            // 这里返回一个已经接受到数据的状态
-            UserInfo.UserMsg.Builder userState = UserInfo.UserMsg.newBuilder().setState(1);
-            ctx.writeAndFlush(userState);
-            System.out.println("成功发送给服务端!");
-        } catch (Exception e) {
-            e.printStackTrace();
+            if (msg instanceof NettyMessage.NettyMsg) {
+                NettyMessage.NettyMsg readNettyMsg = (NettyMessage.NettyMsg) msg;
+                Log.d(TAG, "内容 " + readNettyMsg.toString());
+                int type = readNettyMsg.getMsgType();
+                if (type == MSG_USER_HEART_BEAT) {
+                    Log.d(TAG, "心跳回复  remoteAddress : " + channel.remoteAddress() + " localAddress : " + channel.localAddress());
+                } else if (type == MSG_USER_BUSINESS) {
+                    Log.d(TAG, "业务消息 : " + readNettyMsg.getMsgType());
+                } else if (type == MSG_USER_TIME_OUT) {
+                    Log.d(TAG, "Time Out !!!");
+                } else {
+                    Log.d(TAG, "未知命令");
+                }
+            } else {
+                Log.d(TAG, "无效消息");
+            }
         } finally {
             ReferenceCountUtil.release(msg);
         }

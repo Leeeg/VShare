@@ -9,7 +9,7 @@ public class NettyClientApp {
 
     public NettyClientApp() {
         NettyClient nettyClient = new NettyClient();
-        nettyClient.run();
+        nettyClient.init();
     }
 
 }

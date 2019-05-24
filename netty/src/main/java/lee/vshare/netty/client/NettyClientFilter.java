@@ -10,7 +10,7 @@ import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import io.netty.handler.timeout.IdleStateHandler;
-import lee.vshare.netty.protobuf.UserInfo;
+import lee.vshare.netty.protobuf.NettyMessage;
 
 /**
  * 
@@ -32,7 +32,7 @@ public class NettyClientFilter extends ChannelInitializer<SocketChannel> {
         
         //传输的协议 Protobuf
         ph.addLast(new ProtobufVarint32FrameDecoder());
-        ph.addLast(new ProtobufDecoder(UserInfo.UserMsg.getDefaultInstance()));
+        ph.addLast(new ProtobufDecoder(NettyMessage.NettyMsg.getDefaultInstance()));
         ph.addLast(new ProtobufVarint32LengthFieldPrepender());
         ph.addLast(new ProtobufEncoder());
 

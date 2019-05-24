@@ -1,6 +1,6 @@
 syntax = "proto3";
 // 生成的包名
-option java_package="com.lee.vshare.netty.protobuf";
+option java_package="lee.vshare.netty.protobuf";
 //生成的java名
 option java_outer_classname = "NettyMessage";
 
@@ -8,12 +8,12 @@ message NettyMsg {
       
      int32 msgId = 1;
       
-     bytes userId = 2;
+     string userId = 2;
       
      int32 token = 3;
 	  
      int32 msgType = 4;
 
-     bytes content = 5;
+     string msgContent = 5;
 } 
 
