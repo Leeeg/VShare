@@ -95,5 +95,6 @@ dependencies {
     implementation project(':netlibrary')
     implementation project(':audiotalkie')
     implementation project(':netty')
+    implementation project(':common')
     implementation 'com.android.support:multidex:1.0.1'
 }

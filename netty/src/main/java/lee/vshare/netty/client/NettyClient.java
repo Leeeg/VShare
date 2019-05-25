@@ -25,10 +25,9 @@ public class NettyClient {
 
     private static final String TAG = "NettyClient";
 
-    private String host = "192.168.3.12"; // ip地址
+    private String host = "192.168.0.21";
     private static final int port = 9090;
     private static final int udpPort = 9091;
-    // 通过nio方式来接收连接和处理连接
 
     private Channel clientChannel;
     private Channel udpChannel;
@@ -59,25 +58,33 @@ public class NettyClient {
                     .option(ChannelOption.SO_RCVBUF, 1024) //设置接受数据缓冲大小
                     .handler(new NettyUDPHandler());
 
-            ChannelFuture udpChannelFuture = udpBootstrap.bind(udpPort).sync();// 服务器绑定端口监听
+            ChannelFuture future = clientBootstrap.connect(host, port)
+                    .addListener(channelFuture -> {
+                        if (channelFuture.isSuccess()) {
+                            Log.d(TAG, "Netty Client 连接成功");
+                        } else {
+                            Log.d(TAG, "Netty Client 连接失败");
+                        }
+                    }).sync();
+
+            Log.d(TAG, "setClientChannel");
+            clientChannel = future.channel();
+            NettyTask.getInstance().setClientChannel(clientChannel);
+
+            ChannelFuture udpChannelFuture = udpBootstrap.bind(udpPort).sync();
+            Log.d(TAG, "UDP服务器绑定端口监听 : " + udpPort);
             udpChannel = udpChannelFuture.channel();
             NettyTask.getInstance().setUdpChannel(udpChannel);
 
-            clientBootstrap.connect(host, port).addListener((ChannelFutureListener) channelFuture -> {
-                if (channelFuture.isSuccess()) {
-                    Log.d(TAG, "连接成功");
-                    clientChannel = channelFuture.channel();
-                    NettyTask.getInstance().setClientChannel(clientChannel);
-                } else {
-                    Log.d(TAG, "连接失败");
-                }
-            }).sync();
-
+            Log.d(TAG, "clientChannel closeFuture().sync()");
+            clientChannel.closeFuture().sync();
+            Log.d(TAG, "udpChannel closeFuture().sync()");
             udpChannel.closeFuture().sync();
 
         } catch (Exception e) {
-            Log.d(TAG, "客户端连接异常 ：" + e);
+            Log.e(TAG, "Netty Client 连接异常 ：" + e);
         } finally {
+            Log.d(TAG, "shutdownGracefully");
             clientGroup.shutdownGracefully();
             udpGroup.shutdownGracefully();
         }

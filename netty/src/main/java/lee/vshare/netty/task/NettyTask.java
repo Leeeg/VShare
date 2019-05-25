@@ -1,7 +1,10 @@
 package lee.vshare.netty.task;
 
 
+import android.util.Log;
+
 import io.netty.channel.Channel;
+import lee.vshare.common.AppUtil;
 import lee.vshare.netty.protobuf.NettyMessage;
 
 /**
@@ -9,6 +12,8 @@ import lee.vshare.netty.protobuf.NettyMessage;
  */
 
 public class NettyTask {
+
+    private static final String TAG = "NettyTask";
 
     public NettyTask() {
     }
@@ -36,8 +41,9 @@ public class NettyTask {
         this.udpChannel = udpChannel;
     }
 
-    public void sendNettyMsg(NettyMessage.NettyMsg nettyMsg){
-        if (null != clientChannel){
+    public void sendNettyMsg(NettyMessage.NettyMsg nettyMsg) {
+        if (null != clientChannel) {
+            Log.d(TAG, "sendNettyMsg : " + nettyMsg.toString());
             clientChannel.writeAndFlush(nettyMsg);
         }
     }

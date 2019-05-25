@@ -50,6 +50,7 @@ public class LoginActivity extends com.lee.vshare.ui.BaseActivity {
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions.request(Manifest.permission.INTERNET,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.UPDATE_DEVICE_STATS,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(granted -> {
                     if (granted) { // Always true pre-M

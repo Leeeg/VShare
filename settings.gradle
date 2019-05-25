@@ -1,1 +1,1 @@
-include ':app', ':netlibrary', ':audiotalkie', ':netty', ':speex'
+include ':app', ':netlibrary', ':audiotalkie', ':netty', ':speex', ':common'

@@ -73,7 +73,6 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
-        Channel channel = ctx.channel();
         Log.d(TAG, "userEventTriggered");
         if (obj instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) obj;
@@ -84,8 +83,6 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
                         .build();
 
                 NettyTask.getInstance().sendNettyMsg(pingNettyMsg);
-
-                channel.close();
             }
         }
         super.channelInactive(ctx);

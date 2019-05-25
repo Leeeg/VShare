@@ -64,6 +64,10 @@ public class BasicApp extends Application {
         return DataRepository.getInstance(getDatabase());
     }
 
+    public AppExecutors getAppExecutors() {
+        return mAppExecutors;
+    }
+
     public static BasicApp getInstance() {
         return basicApp;
     }

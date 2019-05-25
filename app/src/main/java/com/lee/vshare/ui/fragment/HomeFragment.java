@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lee.vshare.AppExecutors;
+import com.lee.vshare.BasicApp;
 import com.lee.vshare.R;
 import com.lee.vshare.model.net.entity.BlogEntity;
 import com.lee.vshare.ui.BaseFragment;
@@ -75,7 +77,8 @@ public class HomeFragment extends BaseFragment {
             Log.d(TAG, "onTextClick");
 //            viewModel.getWeather("深圳");
 //            viewModel.getBlog();
-            new NettyClientApp();
+
+            BasicApp.getInstance().getAppExecutors().networkIO().execute(() -> new NettyClientApp());
         }
     };
 
