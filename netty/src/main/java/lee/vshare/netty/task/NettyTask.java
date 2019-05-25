@@ -41,6 +41,11 @@ public class NettyTask {
         this.udpChannel = udpChannel;
     }
 
+    public void releaseChannel(){
+        clientChannel.close();
+        udpChannel.close();
+    }
+
     public void sendNettyMsg(NettyMessage.NettyMsg nettyMsg) {
         if (null != clientChannel) {
             Log.d(TAG, "sendNettyMsg : " + nettyMsg.toString());

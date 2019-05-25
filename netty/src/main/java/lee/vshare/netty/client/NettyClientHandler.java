@@ -50,6 +50,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         Log.d(TAG, "handlerRemoved");
+        NettyTask.getInstance().releaseChannel();
         super.handlerRemoved(ctx);
     }
 
