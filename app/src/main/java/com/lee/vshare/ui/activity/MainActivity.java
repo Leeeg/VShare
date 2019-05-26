@@ -8,6 +8,8 @@ import android.widget.LinearLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.lee.vshare.R;
+import com.lee.vshare.ui.BaseActivity;
+import com.lee.vshare.ui.BaseFragment;
 import com.lee.vshare.ui.fragment.BlogFragment;
 import com.lee.vshare.ui.fragment.HomeFragment;
 import com.lee.vshare.ui.fragment.MessageFragment;
@@ -24,7 +26,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
-public class MainActivity extends com.lee.vshare.ui.BaseActivity {
+public class MainActivity extends BaseActivity {
 
     private static final String TAG = "Lee_MainActivity";
 
@@ -35,7 +37,7 @@ public class MainActivity extends com.lee.vshare.ui.BaseActivity {
     private final static int TAB_INDEX_BLOGS = 1;
     private final static int TAB_INDEX_RECREATION = 2;
     private final static int TAB_INDEX_MESSAGE = 3;
-    private Map<Integer, com.lee.vshare.ui.BaseFragment> tabMap = new HashMap<>(4);
+    private Map<Integer, BaseFragment> tabMap = new HashMap<>(4);
 
     private DrawerLayout drawer;
     private BottomNavigationView navigation;
@@ -187,7 +189,7 @@ public class MainActivity extends com.lee.vshare.ui.BaseActivity {
         }
     }
 
-    public void addFragment(com.lee.vshare.ui.BaseFragment fragment, int currentIndex, String tag) {
+    public void addFragment(BaseFragment fragment, int currentIndex, String tag) {
         Log.d("Lee_MainActivity", "addFragment");
         navigation.setEnabled(false);
         fragmentManager

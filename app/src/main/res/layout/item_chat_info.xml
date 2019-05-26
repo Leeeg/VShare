@@ -7,8 +7,8 @@
         <import type="com.lee.vshare.util.StringUtils" />
 
         <variable
-            name="music"
-            type="com.lee.vshare.model.ex.Music" />
+            name="chatInfo"
+            type="com.lee.vshare.model.ex.ChatInfo" />
 
         <variable
             name="listener"
@@ -25,10 +25,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_100"
-            android:onClick="@{()->listener.onItemClick(music)}">
+            android:onClick="@{()->listener.onItemClick(chatInfo)}">
 
             <ImageView
-                android:id="@+id/music_cover"
+                android:id="@+id/chatInfo_cover"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -37,30 +37,30 @@
 
             <TextView
                 android:layout_marginStart="@dimen/dp_16"
-                android:id="@+id/music_title"
+                android:id="@+id/chatInfo_title"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_40"
                 android:ellipsize="end"
                 android:gravity="bottom"
                 android:maxLines="2"
-                android:text="@{music.MusicTitle}"
+                android:text="@{String.valueOf(chatInfo.Time)}"
                 android:textColor="@color/blackTitle"
                 android:textSize="@dimen/item_title"
                 android:textStyle="bold"
-                app:layout_constraintLeft_toRightOf="@+id/music_cover" />
+                app:layout_constraintLeft_toRightOf="@+id/chatInfo_cover" />
 
             <TextView
                 android:layout_marginStart="@dimen/dp_16"
-                android:id="@+id/music_describe"
+                android:id="@+id/chatInfo_describe"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_40"
                 android:ellipsize="end"
                 android:gravity="top"
                 android:maxLines="2"
-                android:text="@{music.Describe}"
+                android:text="@{chatInfo.Content}"
                 android:textSize="@dimen/item_describe"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/music_cover"/>
+                app:layout_constraintLeft_toRightOf="@+id/chatInfo_cover"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

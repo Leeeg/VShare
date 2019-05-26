@@ -7,13 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lee.vshare.R;
-import com.lee.vshare.databinding.FragmentChatsBinding;
+import com.lee.vshare.databinding.FragmentChatInfoBinding;
 import com.lee.vshare.listener.ItemClickListener;
-import com.lee.vshare.model.ex.Chats;
+import com.lee.vshare.model.ex.ChatInfo;
 import com.lee.vshare.ui.BaseFragment;
-import com.lee.vshare.ui.activity.ContainActivity;
-import com.lee.vshare.ui.adapter.ChatsAdapter;
-import com.lee.vshare.viewmodel.ChatsViewModel;
+import com.lee.vshare.ui.adapter.ChatInfoAdapter;
+import com.lee.vshare.viewmodel.ChatInfoViewModel;
 
 import java.util.List;
 
@@ -28,21 +27,21 @@ import androidx.lifecycle.ViewModelProviders;
  * Describe:
  * Coder: lee
  */
-public class ChatsFragment extends BaseFragment {
+public class ChatInfoFragment extends BaseFragment {
 
-    public static final String TAG = "ChatsFragment";
+    public static final String TAG = "ChatInfoFragment";
 
-    private FragmentChatsBinding mBinding;
-    private ChatsAdapter mAdapter;
+    private FragmentChatInfoBinding mBinding;
+    private ChatInfoAdapter mAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_chats, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_chat_info, container, false);
 
-        mAdapter = new ChatsAdapter(itemClickListener);
-        mBinding.chatsRecycle.setAdapter(mAdapter);
+        mAdapter = new ChatInfoAdapter(itemClickListener);
+        mBinding.chatInfoRecycle.setAdapter(mAdapter);
         return mBinding.getRoot();
     }
 
@@ -50,17 +49,18 @@ public class ChatsFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        final ChatsViewModel viewModel = ViewModelProviders.of(this).get(ChatsViewModel.class);
+        final ChatInfoViewModel viewModel = ViewModelProviders.of(this).get(ChatInfoViewModel.class);
 
-        subscribeUi(viewModel.getChats());
+        subscribeUi(viewModel.getChatInfo());
 
     }
-
-    private void subscribeUi(LiveData<List<Chats>> liveData) {
+    
+    private void subscribeUi(LiveData<List<ChatInfo>> liveData) {
         // Update the list when the data changes
         liveData.observe(this, (recreation) -> {
+            Log.d(TAG, "subscribeUi : " + recreation.size());
             if (recreation != null) {
-                mAdapter.setChatsList(recreation);
+                mAdapter.setChatInfoList(recreation);
             }
             // espresso does not know how to wait for data binding's loop so we execute changes
             // sync.
@@ -68,15 +68,15 @@ public class ChatsFragment extends BaseFragment {
         });
     }
 
-    public static ChatsFragment newInstance() {
-        final ChatsFragment fragment = new ChatsFragment();
+    public static ChatInfoFragment newInstance() {
+        final ChatInfoFragment fragment = new ChatInfoFragment();
         final Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
-
-    private final ItemClickListener<Chats> itemClickListener = (recreation) -> {
-        Log.d("Lee_Chats", "id = " + recreation.getChatsId());
-        ContainActivity.start(getActivity(), ChatInfoFragment.TAG, recreation.getChatsTitle());
+    
+    private final ItemClickListener<ChatInfo> itemClickListener = (recreation) -> {
+        Log.d(TAG, "id = " + recreation.getTime());
     };
+
 }

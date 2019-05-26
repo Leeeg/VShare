@@ -6,9 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lee.vshare.AppExecutors;
-import com.lee.vshare.BasicApp;
 import com.lee.vshare.R;
+import com.lee.vshare.databinding.FragmentHomeBinding;
 import com.lee.vshare.model.net.entity.BlogEntity;
 import com.lee.vshare.ui.BaseFragment;
 import com.lee.vshare.ui.presenter.HomePresenter;
@@ -19,9 +18,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
-import lee.vshare.netty.client.NettyClientApp;
-
-import com.lee.vshare.databinding.FragmentHomeBinding;
 
 
 /**
@@ -77,8 +73,6 @@ public class HomeFragment extends BaseFragment {
             Log.d(TAG, "onTextClick");
 //            viewModel.getWeather("深圳");
 //            viewModel.getBlog();
-
-            BasicApp.getInstance().getAppExecutors().networkIO().execute(() -> new NettyClientApp());
         }
     };
 

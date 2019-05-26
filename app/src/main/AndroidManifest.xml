@@ -39,6 +39,9 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity android:name=".ui.activity.ContainActivity"
+                  android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

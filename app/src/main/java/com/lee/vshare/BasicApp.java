@@ -17,12 +17,11 @@
 package com.lee.vshare;
 
 import android.app.Application;
-import android.net.TrafficStats;
 
 import com.lee.vshare.model.db.AppDatabase;
-import com.lee.vshare.test.NetObserver;
 
 import lee.com.netlibrary.utils.ApiConfig;
+import lee.vshare.netty.client.NettyClient;
 
 import static com.lee.vshare.model.net.NetConfig.BASE_URL_TEST;
 
@@ -32,18 +31,20 @@ import static com.lee.vshare.model.net.NetConfig.BASE_URL_TEST;
  */
 public class BasicApp extends Application {
 
-    private AppExecutors mAppExecutors;
     private static BasicApp basicApp;
+
+    private AppExecutors mAppExecutors;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         basicApp = this;
+
         mAppExecutors = new AppExecutors();
 
         //初始化网络请求模块
-        ApiConfig build = new ApiConfig.Builder()
+        new ApiConfig.Builder()
                 .setBaseUrl(BASE_URL_TEST)//BaseUrl，这个地方加入后项目中默认使用该url
                 .setInvalidateToken(0)//Token失效码
                 .setSucceedCode(0)//成功返回码  NBA的测试返回成功code为0  上传图片返回code为200 由于是不同接口 请大家注意
@@ -52,8 +53,13 @@ public class BasicApp extends Application {
 //                .setHeads(headMap)//动态添加的header，也可以在其他地方通过ApiConfig.setHeads()设置
                 //.setOpenHttps(true)//开启HTTPS验证
                 //.setSslSocketConfigure(sslSocketConfigure)//HTTPS认证配置
-                .build();
-        build.init(this);
+                .build()
+                .init(basicApp);
+
+        //Netty模块初始化
+        BasicApp.getInstance().getAppExecutors().networkIO().execute(() -> {
+            new NettyClient().init();
+        });
     }
 
     public AppDatabase getDatabase() {

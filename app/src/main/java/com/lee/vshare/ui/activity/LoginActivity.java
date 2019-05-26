@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.lee.vshare.R;
+import com.lee.vshare.ui.BaseActivity;
 import com.lee.vshare.ui.fragment.LoginFragment;
 import com.lee.vshare.ui.fragment.RegisterFragment;
 import com.lee.vshare.ui.fragment.ResetPasswordFragment;
@@ -16,14 +18,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import com.lee.vshare.R;
 
 /**
  * CreateDate：18-12-28 on 下午7:26
  * Describe:
  * Coder: lee
  */
-public class LoginActivity extends com.lee.vshare.ui.BaseActivity {
+public class LoginActivity extends BaseActivity {
 
     private static final String TAG = "Lee_LoginActivity";
 

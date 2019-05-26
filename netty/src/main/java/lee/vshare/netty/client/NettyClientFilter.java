@@ -19,8 +19,7 @@ import lee.vshare.netty.protobuf.NettyMessage;
 * @Version:1.0.0  
  */
 public class NettyClientFilter extends ChannelInitializer<SocketChannel> {
-
-
+    
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline ph = ch.pipeline();

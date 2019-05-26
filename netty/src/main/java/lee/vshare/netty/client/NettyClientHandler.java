@@ -26,8 +26,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
     private static final String TAG = "NettyClientHandler";
 
     /**
-     * 表示服务端与客户端连接建立
-     *
+     * 服务端与客户端连接建立
      * @param ctx
      * @throws Exception
      */
@@ -43,7 +42,6 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
     /**
      * 有连接断开
-     *
      * @param ctx
      * @throws Exception
      */
@@ -63,6 +61,9 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
         super.channelActive(ctx);
     }
 
+    /**
+     * 连接关闭
+     */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         Log.d(TAG, "channelInactive");
@@ -112,6 +113,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
                 int type = readNettyMsg.getMsgType();
                 if (type == MSG_USER_HEART_BEAT) {
                     Log.d(TAG, "心跳回复  remoteAddress : " + channel.remoteAddress() + " localAddress : " + channel.localAddress());
+                    NettyTask.getInstance().callbackMessage("收到消息");
                 } else if (type == MSG_USER_BUSINESS) {
                     Log.d(TAG, "业务消息 : " + readNettyMsg.getMsgType());
                 } else if (type == MSG_USER_TIME_OUT) {

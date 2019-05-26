@@ -57,7 +57,7 @@
                 android:ellipsize="end"
                 android:gravity="top"
                 android:maxLines="2"
-                android:text="@{chats.describe}"
+                android:text="@{chats.Describe}"
                 android:textSize="@dimen/item_describe"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/chats_cover"/>

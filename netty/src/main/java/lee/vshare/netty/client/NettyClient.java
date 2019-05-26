@@ -6,7 +6,6 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -25,7 +24,8 @@ public class NettyClient {
 
     private static final String TAG = "NettyClient";
 
-    private String host = "192.168.0.21";
+//    private String host = "192.168.0.21";
+    private String host = "192.168.3.12";
     private static final int port = 9090;
     private static final int udpPort = 9091;
 
@@ -42,6 +42,7 @@ public class NettyClient {
      **/
     public void init() {
         try {
+
             clientBootstrap
                     .group(clientGroup)
                     .channel(NioSocketChannel.class)
@@ -82,7 +83,7 @@ public class NettyClient {
             udpChannel.closeFuture().sync();
 
         } catch (Exception e) {
-            Log.e(TAG, "Netty Client 连接异常 ：" + e);
+            Log.e(TAG, "Netty 连接异常 ：" + e);
         } finally {
             Log.d(TAG, "shutdownGracefully");
             clientGroup.shutdownGracefully();
