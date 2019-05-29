@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lee.vsahre.speex.SpeexTask;
+import com.lee.vshare.BasicApp;
 import com.lee.vshare.R;
 import com.lee.vshare.databinding.FragmentHomeBinding;
 import com.lee.vshare.model.net.entity.BlogEntity;
@@ -18,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
+import lee.vshare.netty.task.NettyTask;
 
 
 /**
@@ -73,6 +76,27 @@ public class HomeFragment extends BaseFragment {
             Log.d(TAG, "onTextClick");
 //            viewModel.getWeather("深圳");
 //            viewModel.getBlog();
+        }
+
+        @Override
+        public void onAskClick() {
+            Log.d(TAG, "onAskClick");
+            NettyTask.getInstance().applyTalk();
+        }
+
+        @Override
+        public void onSpeakClick() {
+            Log.d(TAG, "onSpeakClick");
+            BasicApp.getInstance().getAppExecutors().networkIO().execute(() -> {
+                SpeexTask.getInstance().startSpeak();
+            });
+        }
+
+        @Override
+        public void onEndClick() {
+            Log.d(TAG, "onEndClick");
+            SpeexTask.getInstance().stopSpeak();
+            NettyTask.getInstance().releaseTalk();
         }
     };
 

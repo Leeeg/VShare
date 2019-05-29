@@ -18,6 +18,7 @@ package com.lee.vshare;
 
 import android.app.Application;
 
+import com.lee.vsahre.speex.SpeexTask;
 import com.lee.vshare.model.db.AppDatabase;
 
 import lee.com.netlibrary.utils.ApiConfig;
@@ -60,6 +61,12 @@ public class BasicApp extends Application {
         BasicApp.getInstance().getAppExecutors().networkIO().execute(() -> {
             new NettyClient().init();
         });
+
+        //Speex模块初始化
+        BasicApp.getInstance().getAppExecutors().networkIO().execute(() -> {
+            new SpeexTask().init();
+        });
+
     }
 
     public AppDatabase getDatabase() {

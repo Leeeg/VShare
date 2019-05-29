@@ -23,8 +23,10 @@ import android.view.ViewGroup;
 import com.lee.vshare.R;
 import com.lee.vshare.databinding.ItemChatInfoBinding;
 import com.lee.vshare.listener.ItemClickListener;
+import com.lee.vshare.model.ChatInfoModel;
 import com.lee.vshare.model.ex.ChatInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
@@ -33,7 +35,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ChatInfoAdapter extends RecyclerView.Adapter<ChatInfoAdapter.ChatInfoViewHolder> {
 
-    List<? extends ChatInfo> mChatInfoList;
+    private List<ChatInfo> mChatInfoList = new ArrayList<>();
 
     @Nullable
     private final ItemClickListener ChatInfoItemClickListener;
@@ -44,11 +46,12 @@ public class ChatInfoAdapter extends RecyclerView.Adapter<ChatInfoAdapter.ChatIn
         setHasStableIds(true);
     }
 
-    public void setChatInfoList(final List<? extends ChatInfo> ChatInfoList) {
+    public void setChatInfoList(final List<? extends ChatInfo> chatInfoList) {
         Log.d("Lee_ChatInfoAdapter", "setChatInfoList");
-        mChatInfoList = ChatInfoList;
-        Log.d("Lee_ChatInfoAdapter", "notifyItemRangeInserted");
-        notifyDataSetChanged();
+        int startIndex = mChatInfoList.size();
+        mChatInfoList.addAll(chatInfoList.subList(startIndex, chatInfoList.size()));
+        Log.d("Lee_ChatInfoAdapter", "notifyItemRangeInserted  " + startIndex + " - " + mChatInfoList.size());
+        notifyItemRangeInserted(startIndex, mChatInfoList.size());
     }
 
     @Override
@@ -88,4 +91,5 @@ public class ChatInfoAdapter extends RecyclerView.Adapter<ChatInfoAdapter.ChatIn
             this.binding = binding;
         }
     }
+
 }

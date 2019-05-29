@@ -61,6 +61,7 @@ public class ChatInfoFragment extends BaseFragment {
             Log.d(TAG, "subscribeUi : " + recreation.size());
             if (recreation != null) {
                 mAdapter.setChatInfoList(recreation);
+                mBinding.chatInfoRecycle.smoothScrollToPosition(recreation.size());
             }
             // espresso does not know how to wait for data binding's loop so we execute changes
             // sync.

@@ -12,8 +12,12 @@ import io.netty.util.ReferenceCountUtil;
 import lee.vshare.netty.protobuf.NettyMessage;
 import lee.vshare.netty.task.NettyTask;
 
+import static lee.vshare.netty.contain.NMsgContainer.MSG_TALK_APPLY_FAILED;
+import static lee.vshare.netty.contain.NMsgContainer.MSG_TALK_APPLY_SUCCESS;
+import static lee.vshare.netty.contain.NMsgContainer.MSG_TALK_RELEASE;
 import static lee.vshare.netty.contain.NMsgContainer.MSG_USER_BUSINESS;
 import static lee.vshare.netty.contain.NMsgContainer.MSG_USER_HEART_BEAT;
+import static lee.vshare.netty.contain.NMsgContainer.MSG_USER_MESSAGE_SUCCESS;
 import static lee.vshare.netty.contain.NMsgContainer.MSG_USER_TIME_OUT;
 
 /**
@@ -27,6 +31,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
     /**
      * 服务端与客户端连接建立
+     *
      * @param ctx
      * @throws Exception
      */
@@ -42,6 +47,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
 
     /**
      * 有连接断开
+     *
      * @param ctx
      * @throws Exception
      */
@@ -114,11 +120,21 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
                 if (type == MSG_USER_HEART_BEAT) {
                     Log.d(TAG, "心跳回复  remoteAddress : " + channel.remoteAddress() + " localAddress : " + channel.localAddress());
                     NettyTask.getInstance().callbackMessage("收到消息");
+                } else if (type == MSG_USER_MESSAGE_SUCCESS) {
+                    Log.d(TAG, "发送成功");
                 } else if (type == MSG_USER_BUSINESS) {
                     Log.d(TAG, "业务消息 : " + readNettyMsg.getMsgType());
                 } else if (type == MSG_USER_TIME_OUT) {
                     Log.d(TAG, "Time Out !!!");
-                } else {
+                } else if (type == MSG_TALK_APPLY_SUCCESS) {//根据消息中的发送方区分自己主呼还是被呼(主呼则开始录音 被呼则上报地址)
+                    Log.d(TAG, "申请话权成功");
+                    NettyTask.getInstance().reportAddress();
+                } else if (type == MSG_TALK_APPLY_FAILED) {
+                    Log.d(TAG, "申请话权失败");
+                } else if (type == MSG_TALK_RELEASE) {//根据消息中的发送方区分自己主呼还是被呼
+                    Log.d(TAG, "释放话权");
+                }
+                else {
                     Log.d(TAG, "未知命令");
                 }
             } else {

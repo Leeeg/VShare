@@ -596,6 +596,9 @@ Java_com_lee_vsahre_speex_NativeLib_startRecord(JNIEnv *env, jobject instance) {
     LOG("IN RECORDING AND PLAYING STATE");
     env->CallVoidMethod(instance, method_id_setIsRecording, true);
 
+    spx_int16_t *ptr;
+    //编码
+    jbyte output_buffer[enc_frame_size];
     while (!recording_playing) {
 
         samples = android_AudioIn(stream_record, buffer, SPEEX_FRAME_SIZE);
@@ -603,7 +606,6 @@ Java_com_lee_vsahre_speex_NativeLib_startRecord(JNIEnv *env, jobject instance) {
             LOG("android_AudioIn failed !\n");
             break;
         }
-        spx_int16_t *ptr;
         if (ENABLE_ECHOCANCEL || ENABLE_PROCSSS) {
             ptr = (spx_int16_t *) buffer;
         }
@@ -638,12 +640,9 @@ Java_com_lee_vsahre_speex_NativeLib_startRecord(JNIEnv *env, jobject instance) {
         }
 
         LOG("encode start %d", enc_frame_size);
-        //编码
-        jbyte output_buffer[enc_frame_size];
 
         //再次设定SpeexBits
         speex_bits_reset(&ebits);
-
         speex_encode_int(enc_state, ptr, &ebits);
         int tot_bytes = speex_bits_write(&ebits, (char *) output_buffer, enc_frame_size);
         jbyteArray encoded = env->NewByteArray(enc_frame_size);
@@ -654,6 +653,8 @@ Java_com_lee_vsahre_speex_NativeLib_startRecord(JNIEnv *env, jobject instance) {
         LOG("capture %d samples !\n", samples);
 
         env->CallVoidMethod(instance, method_id_onDataCallback, encoded);
+
+        env->DeleteLocalRef(encoded);
 
     }
 

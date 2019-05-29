@@ -13,13 +13,18 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class NativeLib {
 
+    static {
+        System.loadLibrary("native");
+    }
+
     private AtomicBoolean isRecording = new AtomicBoolean(false);
     private AtomicBoolean isPlaying = new AtomicBoolean(false);
     private AtomicBoolean isRecordAndPlay = new AtomicBoolean(false);
-    private BlockingDeque<byte[]> blockingDeque = new LinkedBlockingDeque<>();
 
-    static {
-        System.loadLibrary("native");
+    private SpeexCallback speexCallback;
+
+    public void setSpeexCallback(SpeexCallback speexCallback) {
+        this.speexCallback = speexCallback;
     }
 
     public void setIsRecording(boolean v) {
@@ -50,26 +55,9 @@ public class NativeLib {
 
     public void onDataCallback(byte[] data) {
         Log.d("onDataCallback", "data : " + (data == null ? "null" : Arrays.toString(data)));
-        blockingDeque.offer(data.clone());
-        int count = blockingDeque.size();
-        Log.d("onDataCallback", "count = " + count);
-        if (count == 300) {
-            stopRecord();
-            for (int i = 0; i < count; i++) {
-                byte[] speex = blockingDeque.poll();
-                if (null != speex) {
-                    Log.d("onDataCallback", "speex = " + speex.length);
-                    if (speex.length > 0) {
-                        Log.d("onDataCallback", "speex = " + Arrays.toString(speex));
-                        startTrack(speex);
-                    }
-                }
-            }
+        if (null != speexCallback){
+            speexCallback.audioData(data);
         }
-    }
-
-    public void onDataCallback(int data) {
-        Log.d("onDataCallback", "data : " + data);
     }
 
     public native void startRecording(int sampleRate, int period, int channels, String path);

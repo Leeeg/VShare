@@ -27,7 +27,7 @@ public class NettyClientFilter extends ChannelInitializer<SocketChannel> {
          * 解码和编码，应和服务端一致
          * */
         //入参说明: 读超时时间、写超时时间、所有类型的超时时间、时间格式
-        ph.addLast(new IdleStateHandler(0, 5, 0, TimeUnit.SECONDS));
+        ph.addLast(new IdleStateHandler(0, 30, 0, TimeUnit.SECONDS));
         
         //传输的协议 Protobuf
         ph.addLast(new ProtobufVarint32FrameDecoder());

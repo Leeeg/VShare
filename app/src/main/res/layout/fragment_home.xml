@@ -28,14 +28,54 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/textGreen"
-            android:minHeight="@dimen/dp_40"
-            android:onClick="@{()->homePresenter.onTextClick()}"
-            android:text="@{text??``}" />
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/textGreen"
+                android:minHeight="@dimen/dp_60"
+                android:onClick="@{()->homePresenter.onTextClick()}"
+                android:text="@{text??``}" />
+
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/textGreen"
+                android:minHeight="@dimen/dp_60"
+                android:onClick="@{()->homePresenter.onAskClick()}"
+                android:text="申请通话" />
+
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/textGreen"
+                android:minHeight="@dimen/dp_60"
+                android:onClick="@{()->homePresenter.onSpeakClick()}"
+                android:text="开始通话" />
+
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/textGreen"
+                android:minHeight="@dimen/dp_60"
+                android:onClick="@{()->homePresenter.onEndClick()}"
+                android:text="结束通话" />
+
+        </LinearLayout>
 
     </ScrollView>
 

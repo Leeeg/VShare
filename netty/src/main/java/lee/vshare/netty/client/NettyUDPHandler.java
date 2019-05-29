@@ -2,10 +2,14 @@ package lee.vshare.netty.client;
 
 import android.util.Log;
 
+import java.util.Arrays;
+
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.DatagramPacket;
+import lee.vshare.netty.task.NettyTask;
 
 /**
  * @Title: NettyServerHandler
@@ -15,6 +19,7 @@ import io.netty.channel.socket.DatagramPacket;
 public class NettyUDPHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 
     private static final String TAG = "NettyUDPHandler";
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         Log.d(TAG,"channelActive");
@@ -39,6 +44,14 @@ public class NettyUDPHandler extends SimpleChannelInboundHandler<DatagramPacket>
         Log.d(TAG,"channelRead0 : " + ip);
         ByteBuf byteBuf = datagramPacket.copy().content();
         Log.d(TAG,"byteBuf : " + byteBuf.readableBytes());
+
+        Log.d(TAG,"hasArray : " + byteBuf.hasArray());
+        byte[] bytes =  ByteBufUtil.getBytes(byteBuf);
+        Log.d(TAG,"getBytes : " + bytes);
+        Log.d(TAG,"bytes size : " + bytes.length);
+        Log.d(TAG,"bytes : " + Arrays.toString(bytes));
+
+        NettyTask.getInstance().track(bytes);
     }
 
 }

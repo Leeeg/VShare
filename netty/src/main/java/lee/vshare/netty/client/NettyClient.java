@@ -13,6 +13,9 @@ import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lee.vshare.netty.task.NettyTask;
 
+import static lee.vshare.netty.config.Config.NETTY_CLIENT_HOST;
+import static lee.vshare.netty.config.Config.NETTY_CLIENT_PORT;
+
 /**
  * @author pancm
  * @Title: NettyClient
@@ -23,11 +26,6 @@ import lee.vshare.netty.task.NettyTask;
 public class NettyClient {
 
     private static final String TAG = "NettyClient";
-
-//    private String host = "192.168.0.21";
-    private String host = "192.168.3.12";
-    private static final int port = 9090;
-    private static final int udpPort = 9091;
 
     private Channel clientChannel;
     private Channel udpChannel;
@@ -52,17 +50,17 @@ public class NettyClient {
 
             udpBootstrap.group(udpGroup)
                     .channel(NioDatagramChannel.class)
-                    .option(ChannelOption.SO_BROADCAST, true)
+                    .option(ChannelOption.SO_BROADCAST, true)//支持广播
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                     .option(ChannelOption.SO_SNDBUF, 1024) //设置发送数据缓冲大小
                     .option(ChannelOption.SO_RCVBUF, 1024) //设置接受数据缓冲大小
                     .handler(new NettyUDPHandler());
 
-            ChannelFuture future = clientBootstrap.connect(host, port)
+            ChannelFuture future = clientBootstrap.connect(NETTY_CLIENT_HOST, NETTY_CLIENT_PORT)
                     .addListener(channelFuture -> {
                         if (channelFuture.isSuccess()) {
-                            Log.d(TAG, "Netty Client 连接成功");
+                            Log.d(TAG, "\n[ Netty Client 连接成功 >>>>>>> ]\n");
                         } else {
                             Log.d(TAG, "Netty Client 连接失败");
                         }
@@ -72,8 +70,8 @@ public class NettyClient {
             clientChannel = future.channel();
             NettyTask.getInstance().setClientChannel(clientChannel);
 
-            ChannelFuture udpChannelFuture = udpBootstrap.bind(udpPort).sync();
-            Log.d(TAG, "UDP服务器绑定端口监听 : " + udpPort);
+            ChannelFuture udpChannelFuture = udpBootstrap.bind(0).sync();
+            Log.d(TAG, "\n[ udpChannel >>>>>> ]\n");
             udpChannel = udpChannelFuture.channel();
             NettyTask.getInstance().setUdpChannel(udpChannel);
 
@@ -81,6 +79,7 @@ public class NettyClient {
             clientChannel.closeFuture().sync();
             Log.d(TAG, "udpChannel closeFuture().sync()");
             udpChannel.closeFuture().sync();
+
 
         } catch (Exception e) {
             Log.e(TAG, "Netty 连接异常 ：" + e);

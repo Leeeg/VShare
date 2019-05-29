@@ -38,11 +38,17 @@ android {
         sourceCompatibility 1.8
     }
 
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
-        }
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                outputFileName = "VShare-v" + defaultConfig.versionName + "_" + buildType.name + ".apk"
+            }
     }
+//    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//        }
+//    }
 }
 
 
@@ -93,8 +99,9 @@ dependencies {
     // 注：protobuf-java的版本 一定要和 安装protocobuffer的版本 一致
     implementation 'com.google.protobuf:protobuf-java:3.7.1'
     implementation project(':netlibrary')
-    implementation project(':audiotalkie')
+//    implementation project(':audiotalkie')
     implementation project(':netty')
+    implementation project(':speex')
     implementation project(':common')
     implementation 'com.android.support:multidex:1.0.1'
 }

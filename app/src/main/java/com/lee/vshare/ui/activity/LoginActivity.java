@@ -52,6 +52,7 @@ public class LoginActivity extends BaseActivity {
         rxPermissions.request(Manifest.permission.INTERNET,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.UPDATE_DEVICE_STATS,
+                Manifest.permission.RECORD_AUDIO,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(granted -> {
                     if (granted) { // Always true pre-M

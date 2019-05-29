@@ -9,4 +9,9 @@ public interface HomePresenter {
 
     void onTextClick();
 
+    void onAskClick();
+
+    void onSpeakClick();
+
+    void onEndClick();
 }
